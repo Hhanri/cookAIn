@@ -22,7 +22,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
         await userDoc
           .set({
             ingredient.name : ingredient.toJson()
-          });
+          }, SetOptions(merge: true));
       }
     );
   }
@@ -57,7 +57,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
       function: () async {
         await userDoc
           .update({
-            'ingredientName.quantity' : FieldValue.increment(-quantityToRemove)
+            '$ingredientName.quantity' : FieldValue.increment(-quantityToRemove)
           });
       }
     );
@@ -69,7 +69,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
       function: () async {
         await userDoc
           .update({
-            'ingredientName.quantity' : FieldValue.increment(quantityToAdd)
+          '$ingredientName.quantity' : FieldValue.increment(quantityToAdd)
           });
       }
     );
