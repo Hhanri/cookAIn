@@ -60,6 +60,12 @@ void main() {
     expect(fsi.dump(), afterAddingQuantity);
   });
 
+  test('reset ingredient', () async {
+    final res = await dataSource.editIngredient(ingredient: ingredient);
+    expect(res, const TypeMatcher<Success>());
+    expect(fsi.dump(), afterAdding);
+  });
+
   test('remove quantity on existing ingredient', () async {
     final res = await dataSource.removeQuantity(ingredientName: ingredient.name, quantityToRemove: quantityToRemove);
     expect(res, const TypeMatcher<Success>());
