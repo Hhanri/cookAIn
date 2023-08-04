@@ -14,47 +14,17 @@ void main() {
   final dataSource = IngredientsRemoteDataSource(fsi: fsi, fai: fai);
 
   const ingredient = mockIngredient;
-  const editedIngredient = IngredientModel(name: 'Apple', quantity: 4, unit: null);
-  const int quantityToRemove = 2;
-  const int quantityToAdd = 3;
+  const editedIngredient = mockEditedIngredient;
+  const int quantityToRemove = mockQuantityToRemove;
+  const int quantityToAdd = mockQuantityToAdd;
 
   const afterAdding = mockAfterAdding;
 
-  const afterEditing = '''{
-  "ingredients": {
-    "uuid123456789": {
-      "Apple": {
-        "name": "Apple",
-        "quantity": 4,
-        "unit": null
-      }
-    }
-  }
-}''';
+  const afterEditing = mockAfterEditing;
 
-  const afterAddingQuantity = '''{
-  "ingredients": {
-    "uuid123456789": {
-      "Apple": {
-        "name": "Apple",
-        "quantity": 7,
-        "unit": null
-      }
-    }
-  }
-}''';
+  const afterAddingQuantity = mockAfterAddingQuantity;
 
-  const afterRemovingQuantity = '''{
-  "ingredients": {
-    "uuid123456789": {
-      "Apple": {
-        "name": "Apple",
-        "quantity": 5,
-        "unit": null
-      }
-    }
-  }
-}''';
+  const afterRemovingQuantity = mockAfterRemovingQuantity;
 
   const afterDeleting = mockAfterDeleting;
 
@@ -84,12 +54,6 @@ void main() {
     expect(fsi.dump(), afterAdding);
   });
 
-  test('edit existing ingredient', () async {
-    final res = await dataSource.editIngredient(ingredient: editedIngredient);
-    expect(res, const TypeMatcher<Success>());
-    expect(fsi.dump(), afterEditing);
-  });
-
   test('add quantity on existing ingredient', () async {
     final res = await dataSource.addQuantity(ingredientName: ingredient.name, quantityToAdd: quantityToAdd);
     expect(res, const TypeMatcher<Success>());
@@ -100,6 +64,12 @@ void main() {
     final res = await dataSource.removeQuantity(ingredientName: ingredient.name, quantityToRemove: quantityToRemove);
     expect(res, const TypeMatcher<Success>());
     expect(fsi.dump(), afterRemovingQuantity);
+  });
+
+  test('edit existing ingredient', () async {
+    final res = await dataSource.editIngredient(ingredient: editedIngredient);
+    expect(res, const TypeMatcher<Success>());
+    expect(fsi.dump(), afterEditing);
   });
 
   test('delete existing ingredient', () async {
