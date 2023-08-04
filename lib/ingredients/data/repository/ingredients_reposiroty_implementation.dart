@@ -7,7 +7,7 @@ import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/domain/repository/ingredients_repository_interface.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class IngredientsRepositoryImplementation implements IngredientsRepositoryInterface<IngredientModel> {
+class IngredientsRepositoryImplementation implements IngredientsRepositoryInterface<IngredientModel> {
 
   final IngredientsDataSourceInterface dataSource;
 
