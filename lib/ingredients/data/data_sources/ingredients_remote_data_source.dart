@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cookain/core/failure/failure.dart';
+import 'package:cookain/core/result/failure.dart';
+import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/data/models/ingredient_model.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +16,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
   });
 
   @override
-  Future<void> addIngredient({required IngredientModel ingredient}) async {
+  Future<Success> addIngredient({required IngredientModel ingredient}) async {
     return _handleError(
       function: () async {
         await userDoc
@@ -27,7 +28,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
   }
 
   @override
-  Future<void> removeIngredient({required String ingredientName}) async {
+  Future<Success> removeIngredient({required String ingredientName}) async {
     return _handleError(
       function: () async {
         await userDoc
@@ -39,7 +40,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
   }
 
   @override
-  Future<void> editIngredient({required IngredientModel ingredient}) {
+  Future<Success> editIngredient({required IngredientModel ingredient}) {
     return _handleError(
       function: () async {
         await userDoc
@@ -51,7 +52,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
   }
 
   @override
-  Future<void> removeQuantity({required String ingredientName, required num quantityToRemove}) {
+  Future<Success> removeQuantity({required String ingredientName, required num quantityToRemove}) {
     return _handleError(
       function: () async {
         await userDoc
@@ -63,7 +64,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
   }
 
   @override
-  Future<void> addQuantity({required String ingredientName, required num quantityToAdd}) {
+  Future<Success> addQuantity({required String ingredientName, required num quantityToAdd}) {
     return _handleError(
       function: () async {
         await userDoc
@@ -92,9 +93,10 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
     .collection('ingredients')
     .doc(fai.currentUser?.uid);
 
-  Future<void> _handleError({required Future<void> Function() function}) async {
+  Future<Success> _handleError({required Future<void> Function() function}) async {
     try {
       await function();
+      return const Success();
     } on FirebaseException catch (e) {
       throw Failure(message: e.message, code: e.code);
     } catch (e) {

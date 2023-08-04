@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cookain/core/failure/failure.dart';
+import 'package:cookain/core/result/failure.dart';
+import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_data_source_interface.dart';
 import 'package:cookain/ingredients/data/models/ingredient_model.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
@@ -13,27 +14,27 @@ abstract class IngredientsRepositoryImplementation implements IngredientsReposit
   IngredientsRepositoryImplementation(this.dataSource);
 
   @override
-  Future<Either<Failure, void>> addIngredient({required IngredientModel ingredient}) {
-   return _query<void>(() => dataSource.addIngredient(ingredient: ingredient));
+  Future<Either<Failure, Success>> addIngredient({required IngredientModel ingredient}) {
+   return _query(() => dataSource.addIngredient(ingredient: ingredient));
   }
 
   @override
-  Future<Either<Failure, void>> removeIngredient({required String ingredientName}) {
+  Future<Either<Failure, Success>> removeIngredient({required String ingredientName}) {
     return _query(() => dataSource.removeIngredient(ingredientName: ingredientName));
   }
 
   @override
-  Future<Either<Failure, void>> editIngredient({required IngredientModel ingredient}) {
+  Future<Either<Failure, Success>> editIngredient({required IngredientModel ingredient}) {
     return _query(() => dataSource.editIngredient(ingredient: ingredient));
   }
 
   @override
-  Future<Either<Failure, void>> removeIngredientQuantity({required String ingredientName, required num quantityToRemove}) {
+  Future<Either<Failure, Success>> removeIngredientQuantity({required String ingredientName, required num quantityToRemove}) {
     return _query(() => dataSource.removeQuantity(ingredientName: ingredientName, quantityToRemove: quantityToRemove));
   }
 
   @override
-  Future<Either<Failure, void>> addIngredientQuantity({required String ingredientName, required num quantityToAdd}) {
+  Future<Either<Failure, Success>> addIngredientQuantity({required String ingredientName, required num quantityToAdd}) {
     return _query(() => dataSource.addQuantity(ingredientName: ingredientName, quantityToAdd: quantityToAdd));
   }
 

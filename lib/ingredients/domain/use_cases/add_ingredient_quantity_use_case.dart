@@ -1,4 +1,5 @@
-import 'package:cookain/core/failure/failure.dart';
+import 'package:cookain/core/result/failure.dart';
+import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/domain/repository/ingredients_repository_interface.dart';
 import 'package:dartz/dartz.dart';
 
@@ -7,7 +8,7 @@ class AddIngredientQuantityUseCase {
 
   AddIngredientQuantityUseCase(this.repo);
 
-  Future<Either<Failure, void>> call(String ingredientName, num quantityToAdd) {
+  Future<Either<Failure, Success>> call(String ingredientName, num quantityToAdd) {
     return repo.addIngredientQuantity(ingredientName: ingredientName, quantityToAdd: quantityToAdd);
   }
 }

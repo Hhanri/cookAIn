@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class Failure extends Equatable {
+abstract class Result extends Equatable {
   final String? code;
   final String? message;
 
-  const Failure({
+  const Result({
     this.code,
-    required this.message
+    this.message
   });
 
   @override
