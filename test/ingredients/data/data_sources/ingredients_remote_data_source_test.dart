@@ -2,39 +2,23 @@ import 'package:cookain/core/result/failure.dart';
 import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
 import 'package:cookain/ingredients/data/models/ingredient_model.dart';
-import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
-import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../../default/mock_ingredient.dart';
+import '../../../default/mock_firebase.dart';
+
 void main() {
-  final fsi = FakeFirebaseFirestore();
-  final fai = MockFirebaseAuth(
-    signedIn: true,
-    mockUser: MockUser(
-      isAnonymous: true,
-      uid: 'uuid123456789',
-      email: 'test@test.com',
-      displayName: 'test test'
-    )
-  );
+
+  final fsi = mockFSI;
+  final fai = mockFAI;
   final dataSource = IngredientsRemoteDataSource(fsi: fsi, fai: fai);
 
-  const ingredient = IngredientModel(name: 'Apple', quantity: 2, unit: null);
+  const ingredient = mockIngredient;
   const editedIngredient = IngredientModel(name: 'Apple', quantity: 4, unit: null);
   const int quantityToRemove = 2;
   const int quantityToAdd = 3;
 
-  const afterAdding = '''{
-  "ingredients": {
-    "uuid123456789": {
-      "Apple": {
-        "name": "Apple",
-        "quantity": 2,
-        "unit": null
-      }
-    }
-  }
-}''';
+  const afterAdding = mockAfterAdding;
 
   const afterEditing = '''{
   "ingredients": {
@@ -72,11 +56,7 @@ void main() {
   }
 }''';
 
-  const afterDeleting = '''{
-  "ingredients": {
-    "uuid123456789": {}
-  }
-}''';
+  const afterDeleting = mockAfterDeleting;
 
   test('delete non existing ingredient', () async {
     final call = dataSource.removeIngredient(ingredientName: ingredient.name);
