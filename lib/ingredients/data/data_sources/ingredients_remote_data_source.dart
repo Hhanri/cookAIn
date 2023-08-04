@@ -6,9 +6,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_data_source_interface.dart';
 
 class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
+  final FirebaseFirestore fsi;
+  final FirebaseAuth fai;
 
-  final fsi = FirebaseFirestore.instance;
-  final fai = FirebaseAuth.instance;
+  IngredientsRemoteDataSource({
+    required this.fsi,
+    required this.fai
+  });
 
   @override
   Future<void> addIngredient({required IngredientModel ingredient}) async {
