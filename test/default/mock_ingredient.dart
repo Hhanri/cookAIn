@@ -1,6 +1,5 @@
 import 'package:cookain/ingredients/data/models/ingredient_model.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
-import 'package:dartz/dartz.dart' hide Unit;
 
 const mockIngredient = IngredientModel(name: 'Apple', quantity: 4, unit: null);
 const mockEditedIngredient = IngredientModel(name: 'Apple', quantity: 6, unit: Unit.kg);

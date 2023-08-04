@@ -1,8 +1,6 @@
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
 import 'package:cookain/ingredients/data/repository/ingredients_reposiroty_implementation.dart';
-import 'package:cookain/ingredients/domain/use_cases/add_ingredient_quantity_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/add_ingredient_use_case.dart';
-import 'package:cookain/ingredients/domain/use_cases/edit_ingredient_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/remove_ingredient_quantity_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 

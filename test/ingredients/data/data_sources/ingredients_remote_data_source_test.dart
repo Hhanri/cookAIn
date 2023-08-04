@@ -1,7 +1,6 @@
 import 'package:cookain/core/result/failure.dart';
 import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
-import 'package:cookain/ingredients/data/models/ingredient_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../default/mock_ingredient.dart';
