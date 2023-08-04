@@ -28,12 +28,12 @@ abstract class IngredientsRepositoryImplementation implements IngredientsReposit
   }
 
   @override
-  Future<Either<Failure, void>> removeQuantity({required String ingredientName, required num quantityToRemove}) {
+  Future<Either<Failure, void>> removeIngredientQuantity({required String ingredientName, required num quantityToRemove}) {
     return _query(() => dataSource.removeQuantity(ingredientName: ingredientName, quantityToRemove: quantityToRemove));
   }
 
   @override
-  Future<Either<Failure, void>> addQuantity({required String ingredientName, required num quantityToAdd}) {
+  Future<Either<Failure, void>> addIngredientQuantity({required String ingredientName, required num quantityToAdd}) {
     return _query(() => dataSource.addQuantity(ingredientName: ingredientName, quantityToAdd: quantityToAdd));
   }
 

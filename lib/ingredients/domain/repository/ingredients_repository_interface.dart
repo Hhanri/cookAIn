@@ -11,9 +11,9 @@ abstract class IngredientsRepositoryInterface<T extends IngredientEntity> {
 
   Future<Either<Failure, void>> editIngredient({required T ingredient});
 
-  Future<Either<Failure, void>> removeQuantity({required String ingredientName, required num quantityToRemove});
+  Future<Either<Failure, void>> removeIngredientQuantity({required String ingredientName, required num quantityToRemove});
 
-  Future<Either<Failure, void>> addQuantity({required String ingredientName, required num quantityToAdd});
+  Future<Either<Failure, void>> addIngredientQuantity({required String ingredientName, required num quantityToAdd});
 
   Stream<DocumentSnapshot<Ingredients>> ingredientsStream();
 
