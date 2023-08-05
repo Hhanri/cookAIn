@@ -4,9 +4,9 @@ import 'package:cookain/core/result/failure.dart';
 import 'package:cookain/core/result/success.dart';
 import 'package:dartz/dartz.dart';
 
-class AuthRepositoryImplementation implements AuthRepositoryInterface {
+class AuthRepositoryImplementation<T> implements AuthRepositoryInterface<T> {
 
-  final AuthDataSourceInterface dataSource;
+  final AuthDataSourceInterface<T> dataSource;
 
   AuthRepositoryImplementation({required this.dataSource});
 
@@ -29,6 +29,11 @@ class AuthRepositoryImplementation implements AuthRepositoryInterface {
     } catch (e) {
       return Left(Failure(message: e.toString()));
     }
+  }
+
+  @override
+  Stream<T> userChanges() {
+    return dataSource.userChanges();
   }
 
 }

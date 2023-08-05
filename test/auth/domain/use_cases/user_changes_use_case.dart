@@ -1,6 +1,8 @@
 import 'package:cookain/auth/data/data_sources/auth_remote_firebase_data_source.dart';
 import 'package:cookain/auth/data/repository/auth_repository_implementation.dart';
-import 'package:cookain/auth/domain/use_cases/sign_in_with_google_use_case.dart';
+import 'package:cookain/auth/domain/use_cases/sign_out_use_case.dart';
+import 'package:cookain/auth/domain/use_cases/user_changes_use_case.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../default/mock_firebase.dart';
@@ -10,12 +12,12 @@ void main() {
   final googleSignIn = mockGoogleSignIn;
   final dataSource = AuthRemoteFirebaseDataSource(fai: fai, googleSignIn: googleSignIn);
   final repo = AuthRepositoryImplementation(dataSource: dataSource);
-  final useCase = SignInWithGoogleUseCase(repo);
+  final useCase = UserChangesUseCase(repo);
 
-  test('sign in with google', () async {
-    /// Google Sign Out is no implemented by MockGoogleSignIn so it will return a failure
-    final res = await useCase.call();
-    expect(res.isRight(), true);
+  test('user changes', () async {
+
+    final stream = useCase.call();
+    expect(stream, const TypeMatcher<Stream>());
   });
 
 }

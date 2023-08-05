@@ -4,12 +4,12 @@ import 'package:cookain/core/result/success.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthRemoteDataSource implements AuthDataSourceInterface {
+class AuthRemoteFirebaseDataSource implements AuthDataSourceInterface<User?> {
 
   final FirebaseAuth fai;
   final GoogleSignIn googleSignIn;
 
-  AuthRemoteDataSource({required this.fai, required this.googleSignIn});
+  AuthRemoteFirebaseDataSource({required this.fai, required this.googleSignIn});
 
   @override
   Future<Success> signInWithGoogle() async {
@@ -43,6 +43,11 @@ class AuthRemoteDataSource implements AuthDataSourceInterface {
     } catch (e) {
       throw Failure(message: e.toString());
     }
+  }
+
+  @override
+  Stream<User?> userChanges() {
+    return fai.userChanges();
   }
 
 }
