@@ -1,8 +1,6 @@
 import 'package:cookain/auth/data/data_sources/auth_remote_firebase_data_source.dart';
 import 'package:cookain/auth/data/repository/auth_repository_implementation.dart';
-import 'package:cookain/auth/domain/use_cases/sign_out_use_case.dart';
 import 'package:cookain/auth/domain/use_cases/user_changes_use_case.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../default/mock_firebase.dart';
