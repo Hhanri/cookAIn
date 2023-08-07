@@ -28,7 +28,7 @@ class RecipeRemoteDataSource implements RecipeDataSourceInterface {
   @override
   Future<Success> editRecipe(RecipeModel recipe) async {
     try {
-      _recipeDoc(recipe.name)
+      await _recipeDoc(recipe.name)
         .update(recipe.toJson());
       return const Success();
     } on FirebaseException catch (e) {
