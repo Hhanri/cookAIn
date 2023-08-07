@@ -6,7 +6,7 @@ import 'package:cookain/auth/domain/use_cases/user_changes_use_case.dart';
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../default/mock_firebase.dart';
+import '../../../mock/mock_firebase.dart';
 
 void main() {
   final fai = mockFAI;

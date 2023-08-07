@@ -3,8 +3,8 @@ import 'package:cookain/ingredients/data/repository/ingredients_reposiroty_imple
 import 'package:cookain/ingredients/domain/use_cases/add_ingredient_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../default/mock_ingredient.dart';
-import '../../../default/mock_firebase.dart';
+import '../../../mock/mock_ingredient.dart';
+import '../../../mock/mock_firebase.dart';
 
 void main() {
 

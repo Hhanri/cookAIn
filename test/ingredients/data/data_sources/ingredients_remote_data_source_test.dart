@@ -3,8 +3,8 @@ import 'package:cookain/core/result/success.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../default/mock_ingredient.dart';
-import '../../../default/mock_firebase.dart';
+import '../../../mock/mock_ingredient.dart';
+import '../../../mock/mock_firebase.dart';
 
 void main() {
 
