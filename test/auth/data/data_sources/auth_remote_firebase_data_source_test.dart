@@ -4,7 +4,7 @@ import 'package:cookain/core/result/success.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../default/mock_firebase.dart';
+import '../../../default/mock_firebase.dart';
 
 void main() {
   final fai = mockFAI;
