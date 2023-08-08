@@ -8,9 +8,9 @@ abstract class RecipeDataSourceInterface {
 
   Future<Success> removeRecipe(String recipeName);
 
-  Future<Success> editRecipe(RecipeModel  recipe);
+  Future<Success> editRecipe(RecipeModel recipe);
 
-  Future<Success> makeRecipe(RecipeModel  recipe);
+  Future<Success> makeRecipe(RecipeModel recipe);
 
   CollectionReference<RecipeModel> recipesQuery();
 

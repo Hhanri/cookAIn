@@ -26,7 +26,7 @@ class RecipeRepositoryImplementation implements RecipeRepositoryInterface<Recipe
 
   @override
   Future<Either<Failure, Success>> makeRecipe(RecipeModel recipe) {
-    return execute(() => dataSource.editRecipe(recipe));
+    return execute(() => dataSource.makeRecipe(recipe));
   }
 
   @override

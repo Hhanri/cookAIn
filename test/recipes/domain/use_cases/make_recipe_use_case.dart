@@ -8,7 +8,6 @@ import 'package:cookain/recipes/data/models/recipe_model.dart';
 import 'package:cookain/recipes/data/repository/recipe_repository_implementation.dart';
 import 'package:cookain/recipes/domain/use_cases/add_recipe_use_case.dart';
 import 'package:cookain/recipes/domain/use_cases/make_recipe_use_case.dart';
-import 'package:cookain/recipes/domain/use_cases/remove_recipe_use_case.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../mock/mock_firebase.dart';
@@ -40,7 +39,7 @@ void main() {
     test('Make Recipe', () async {
       final res = await makeRecipeUseCase.call(_mockRecipe);
       expect(res.isRight(), true);
-      expect(fsi.dump(), _mockAfterAddingRecipe);
+      expect(fsi.dump(), _mockAfterMakingRecipe);
     });
 
   });
@@ -52,8 +51,8 @@ const _mockSugar = IngredientModel(name: 'sugar', quantity: 50, unit: Unit.g);
 const RecipeModel _mockRecipe = RecipeModel(
   name: 'apple pie',
   ingredients: {
-    'apple': IngredientModel(name: 'apple', quantity: 4, unit: null),
-    'sugar': IngredientModel(name: 'sugar', quantity: 50, unit: Unit.g),
+    'apple': IngredientModel(name: 'apple', quantity: 2, unit: null),
+    'sugar': IngredientModel(name: 'sugar', quantity: 25, unit: Unit.g),
   }
 );
 
@@ -83,12 +82,12 @@ const _mockAfterAddingRecipe = '''{
           "ingredients": {
             "apple": {
               "name": "apple",
-              "quantity": 4,
+              "quantity": 2,
               "unit": null
             },
             "sugar": {
               "name": "sugar",
-              "quantity": 50,
+              "quantity": 25,
               "unit": "g"
             }
           }
@@ -117,12 +116,12 @@ const _mockAfterMakingRecipe = '''{
           "ingredients": {
             "apple": {
               "name": "apple",
-              "quantity": 4,
+              "quantity": 2,
               "unit": null
             },
             "sugar": {
               "name": "sugar",
-              "quantity": 50,
+              "quantity": 25,
               "unit": "g"
             }
           }
