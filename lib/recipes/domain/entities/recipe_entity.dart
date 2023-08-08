@@ -14,7 +14,7 @@ abstract class RecipeEntity extends Equatable {
     for (final element in ingredients.entries) {
       if (!availableIngredients.containsKey(element.key)) return false;
       if (availableIngredients[element.key]?.unit != element.value.unit) return false;
-      if ((availableIngredients[element.key]?.quantity ?? 0) < element.value.quantity) return false;
+      if ((availableIngredients[element.key]?.absoluteQuantity ?? 0) < element.value.absoluteQuantity) return false;
     }
     return true;
   }

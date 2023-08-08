@@ -12,6 +12,16 @@ abstract class IngredientEntity extends Equatable {
   });
 
   Map<String, dynamic> toJson();
+
+  num get absoluteQuantity {
+    switch(unit) {
+      case Unit.kg:
+      case Unit.L: return quantity * 1000;
+      case null:
+      case Unit.g:
+      case Unit.mL: return quantity;
+    }
+  }
 }
 
 enum Unit {
