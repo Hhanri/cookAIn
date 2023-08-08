@@ -12,11 +12,11 @@ class MyBlocListener<C extends Cubit<I>, I extends MyBlocState> extends Stateles
         if (state.isLoading) {
           
         }
-        if (state is MyBlocSuccessState && state.success != null) {
+        if (state.success != null) {
           
         }
-        if (state is MyBlocErrorState) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error)));
+        if (state.error != null) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error!)));
         }
       }
     );
