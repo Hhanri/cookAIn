@@ -22,6 +22,11 @@ abstract class IngredientEntity extends Equatable {
       case Unit.mL: return quantity;
     }
   }
+
+  String get quantityText {
+    if (unit == null) return quantity.toString();
+    return "$quantity ${unit!.name}";
+  }
 }
 
 enum Unit {
