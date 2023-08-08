@@ -1,5 +1,5 @@
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
-import 'package:cookain/auth/presentation/pages/sign_in_page.dart';
+import 'package:cookain/core/config/router.dart';
 import 'package:cookain/core/config/theme.dart';
 import 'package:cookain/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
           create: (context) => sl.get<AuthCubit>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: MyTheme.data,
-        home: const SignInPage(),
+        routerConfig: sl.get<MyGoRouter>().router,
       ),
     );
   }
