@@ -68,7 +68,7 @@ void setupSL() {
   sl.registerLazySingleton<RemoveIngredientQuantityUseCase>(() => RemoveIngredientQuantityUseCase(sl.get<IngredientsRepositoryInterface>()));
   sl.registerLazySingleton<IngredientsStreamUseCase>(() => IngredientsStreamUseCase(sl.get<IngredientsRepositoryInterface>()));
 
-  sl.registerLazySingleton<IngredientsCubit>(
+  sl.registerFactory<IngredientsCubit>(
     () => IngredientsCubit(
       ingredientsStreamUseCase: sl.get<IngredientsStreamUseCase>(),
       addIngredientUseCase: sl.get<AddIngredientUseCase>(),

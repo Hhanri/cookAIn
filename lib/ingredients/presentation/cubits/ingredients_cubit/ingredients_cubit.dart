@@ -36,7 +36,6 @@ class IngredientsCubit extends Cubit<IngredientsState> {
   }) : super(const IngredientsInitial());
 
   void init() {
-    ingredientsStream?.cancel();
     ingredientsStream = ingredientsStreamUseCase.call().listen((event) {
       emit(IngredientsSuccess(ingredients: event.data() ?? const {}));
     });

@@ -24,7 +24,7 @@ class IngredientsSuccess extends IngredientsState {
   }) : super(isLoading: false);
 
   @override
-  List<Object?> get props => [isLoading];
+  List<Object?> get props => [isLoading, ingredients, success, error];
 }
 
 class IngredientsError extends IngredientsState {
@@ -34,5 +34,5 @@ class IngredientsError extends IngredientsState {
   }) : super(isLoading: false);
 
   @override
-  List<Object?> get props => [isLoading, error];
+  List<Object?> get props => [isLoading, ingredients, success, error];
 }
