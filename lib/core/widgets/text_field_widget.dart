@@ -60,14 +60,17 @@ abstract class MyTextFieldParameters {
 class NumbersTextFieldParameters extends MyTextFieldParameters {
   NumbersTextFieldParameters({
     required super.label,
+    super.expands,
+    super.enabled,
+    super.autoFocus,
+    super.readOnly,
   }) : super(
-    error: "Not a number",
     validator: (value) {
       if (value?.isValidNumber() ?? false) return null;
       return "Not a number";
     },
     inputFormatters: [
-      FilteringTextInputFormatter.allow(RegExp(r'^(\d+)(\.\d{1,2})?')),
+      FilteringTextInputFormatter.allow(RegExp(r'^(\d+)\.?\d{0,2}')),
     ],
     keyboardType: const TextInputType.numberWithOptions(decimal: true, signed: false)
   );
@@ -76,11 +79,16 @@ class NumbersTextFieldParameters extends MyTextFieldParameters {
 class NormalTextFieldParameters extends MyTextFieldParameters {
   NormalTextFieldParameters({
     required super.label,
+    super.expands,
+    super.enabled,
+    super.autoFocus,
+    super.readOnly,
+    super.maxLines
   }) : super(
     keyboardType: TextInputType.text,
-    maxLines: 3,
     validator: (value) {
       if (value?.isEmpty ?? false) return "Can't be empty";
+      return null;
     }
   );
 }
