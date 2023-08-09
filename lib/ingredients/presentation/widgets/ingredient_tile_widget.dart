@@ -1,6 +1,7 @@
 import 'package:cookain/core/utils/string_extensions.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
+import 'package:cookain/ingredients/presentation/widgets/ingredient_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +34,7 @@ class IngredientTileWidget extends StatelessWidget {
           title: Text(ingredient.name.toTitleCase()),
           subtitle: Text(ingredient.quantityText),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () => showEditIngredientDialog(context, initialIngredient: ingredient),
             icon: const Icon(Icons.edit)
           ),
         ),
