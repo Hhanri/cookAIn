@@ -79,5 +79,8 @@ class TextTextFieldParameters extends MyTextFieldParameters {
   }) : super(
     keyboardType: TextInputType.text,
     maxLines: 3,
+    validator: (value) {
+      if (value?.isEmpty ?? false) return "Can't be empty";
+    }
   );
 }
