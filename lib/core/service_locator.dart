@@ -9,12 +9,15 @@ import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/core/config/router.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/domain/use_cases/add_ingredient_quantity_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/add_ingredient_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/edit_ingredient_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/ingredients_stream_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/remove_ingredient_quantity_use_case.dart';
 import 'package:cookain/ingredients/domain/use_cases/remove_ingredient_use_case.dart';
+import 'package:cookain/ingredients/presentation/cubits/add_ingredient_cubit/add_ingredient_cubit.dart';
+import 'package:cookain/ingredients/presentation/cubits/edit_ingredient_cubit/edit_ingredient_cubit.dart';
 import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_data_source_interface.dart';
@@ -71,11 +74,22 @@ void setupSL() {
   sl.registerFactory<IngredientsCubit>(
     () => IngredientsCubit(
       ingredientsStreamUseCase: sl.get<IngredientsStreamUseCase>(),
-      addIngredientUseCase: sl.get<AddIngredientUseCase>(),
-      editIngredientUseCase: sl.get<EditIngredientUseCase>(),
       removeIngredientUseCase: sl.get<RemoveIngredientUseCase>(),
       addIngredientQuantityUseCase: sl.get<AddIngredientQuantityUseCase>(),
       removeIngredientQuantityUseCase: sl.get<RemoveIngredientQuantityUseCase>(),
+    )
+  );
+
+  sl.registerFactory<AddIngredientCubit>(
+    () => AddIngredientCubit(
+      useCase: sl.get<AddIngredientUseCase>()
+    )
+  );
+
+  sl.registerFactoryParam<EditIngredientCubit, IngredientEntity, dynamic>(
+    (param1, _) => EditIngredientCubit(
+      useCase: sl.get<EditIngredientUseCase>(),
+      initialIngredient: param1
     )
   );
 
