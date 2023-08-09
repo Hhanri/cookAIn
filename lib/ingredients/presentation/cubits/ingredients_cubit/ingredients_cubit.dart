@@ -35,10 +35,22 @@ class IngredientsCubit extends Cubit<IngredientsState> {
     required this.removeIngredientQuantityUseCase,
   }) : super(const IngredientsInitial());
 
+  late Ingredients ingredients;
+
   void init() {
     ingredientsStream = ingredientsStreamUseCase.call().listen((event) {
-      emit(IngredientsSuccess(ingredients: event.data() ?? const {}));
+      ingredients = event.data() ?? const {};
+      emit(IngredientsSuccess(ingredients: ingredients));
     });
+  }
+
+  void removeIngredient(String ingredientName) async {
+    emit(state.copyWith(ingredients: {...ingredients}..remove(ingredientName)));
+    final res = await removeIngredientUseCase.call(ingredientName);
+    res.fold(
+      (failure) => emit(IngredientsError(ingredients: ingredients, error: failure.message)),
+      (success) => null
+    );
   }
 
   @override
