@@ -73,8 +73,8 @@ class NumbersTextFieldParameters extends MyTextFieldParameters {
   );
 }
 
-class TextTextFieldParameters extends MyTextFieldParameters {
-  TextTextFieldParameters({
+class NormalTextFieldParameters extends MyTextFieldParameters {
+  NormalTextFieldParameters({
     required super.label,
   }) : super(
     keyboardType: TextInputType.text,
