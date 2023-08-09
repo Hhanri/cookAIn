@@ -11,35 +11,26 @@ class IngredientsListViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<IngredientsCubit, IngredientsState>(
       builder: (context, state) {
-        if (state is IngredientsError) {
+        if (state is IngredientsInitial) {
+          return const ShimmerIngredientsListViewWidget();
+        }
 
-          return Center(
+        if (state.ingredients.isEmpty) {
+          return const Center(
             child: Text(
-              state.error ?? "unknown error"
+              "Add your ingredients !"
             ),
-          );
-
-        } else if (state is IngredientsSuccess) {
-
-          if (state.ingredients.isEmpty) {
-            return const Center(
-              child: Text(
-                "Add your ingredients !"
-              ),
-            );
-          }
-
-          return ListView.builder(
-            itemCount: state.ingredients.length,
-            itemBuilder: (context, index) {
-              return IngredientTileWidget(
-                ingredient: state.ingredients.values.elementAt(index)
-              );
-            }
           );
         }
 
-        return const ShimmerIngredientsListViewWidget();
+        return ListView.builder(
+          itemCount: state.ingredients.length,
+          itemBuilder: (context, index) {
+            return IngredientTileWidget(
+              ingredient: state.ingredients.values.elementAt(index)
+            );
+          }
+        );
       }
     );
   }
