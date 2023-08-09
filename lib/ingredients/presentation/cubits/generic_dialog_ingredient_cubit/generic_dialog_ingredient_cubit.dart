@@ -6,7 +6,7 @@ import '../../../../core/cubits/dialog_form_generic_cubit/dialog_form_generic_cu
 
 part 'generic_dialog_ingredient_state.dart';
 
-abstract class GenericDialogIngredientCubit extends DialogFormGenericCubit<IngredientEntity, GenericDialogIngredientState> {
+abstract class GenericDialogIngredientCubit extends DialogFormGenericCubit<GenericDialogIngredientState> {
   @override
   final bool canEditName;
 

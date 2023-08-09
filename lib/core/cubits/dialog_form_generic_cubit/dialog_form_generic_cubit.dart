@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-abstract class DialogFormGenericCubit<T, S> extends Cubit<S> {
+abstract class DialogFormGenericCubit<S> extends Cubit<S> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
