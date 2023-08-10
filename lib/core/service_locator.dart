@@ -7,6 +7,7 @@ import 'package:cookain/auth/domain/use_cases/sign_out_use_case.dart';
 import 'package:cookain/auth/domain/use_cases/user_changes_use_case.dart';
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/core/config/router.dart';
+import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
@@ -95,4 +96,5 @@ void setupSL() {
 
   // Router
   sl.registerLazySingleton<MyGoRouter>(() => MyGoRouter(authCubit: sl.get<AuthCubit>()));
+  sl.registerLazySingleton<HomeNavigationCubit>(() => HomeNavigationCubit());
 }

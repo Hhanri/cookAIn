@@ -2,6 +2,7 @@ import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/core/config/router.dart';
 import 'package:cookain/core/config/theme.dart';
 import 'package:cookain/firebase_options.dart';
+import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cookain/core/service_locator.dart';
@@ -19,11 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
       providers: [
-        RepositoryProvider<AuthCubit>(
+        BlocProvider<AuthCubit>(
           create: (context) => sl.get<AuthCubit>(),
         ),
+        BlocProvider<HomeNavigationCubit>(
+          create: (context) => sl.get<HomeNavigationCubit>()
+        )
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',
