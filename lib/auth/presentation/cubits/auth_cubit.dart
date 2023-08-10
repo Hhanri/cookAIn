@@ -22,7 +22,6 @@ class AuthCubit<T> extends Cubit<AuthState> {
   StreamSubscription<T>? userChangesStream;
 
   void init() async {
-    userChangesStream?.cancel();
     userChangesStream = userChangesUseCase.call().listen((event) {
       if (event == null) {
         emit(const AuthSignedOut(isLoading: false));

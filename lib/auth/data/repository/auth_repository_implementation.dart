@@ -20,7 +20,6 @@ class AuthRepositoryImplementation<T> implements AuthRepositoryInterface<T> {
   Future<Either<Failure, Success>> signOut() async {
     return execute(dataSource.signOut);
   }
-  
 
   @override
   Stream<T> userChanges() {
