@@ -20,6 +20,17 @@ import 'package:cookain/ingredients/domain/use_cases/remove_ingredient_use_case.
 import 'package:cookain/ingredients/presentation/cubits/add_ingredient_cubit/add_ingredient_cubit.dart';
 import 'package:cookain/ingredients/presentation/cubits/edit_ingredient_cubit/edit_ingredient_cubit.dart';
 import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
+import 'package:cookain/recipes/data/data_sources/recipe_remote_data_source.dart';
+import 'package:cookain/recipes/data/repository/recipe_repository_implementation.dart';
+import 'package:cookain/recipes/domain/entities/recipe_entity.dart';
+import 'package:cookain/recipes/domain/repository/recipe_repository_interface.dart';
+import 'package:cookain/recipes/domain/use_cases/add_recipe_use_case.dart';
+import 'package:cookain/recipes/domain/use_cases/edit_recipe_use_case.dart';
+import 'package:cookain/recipes/domain/use_cases/make_recipe_use_case.dart';
+import 'package:cookain/recipes/domain/use_cases/recipes_query_use_case.dart';
+import 'package:cookain/recipes/domain/use_cases/remove_recipe_use_case.dart';
+import 'package:cookain/recipes/presentation/cubits/add_recipe_cubit/add_recipe_cubit.dart';
+import 'package:cookain/recipes/presentation/cubits/edit_recipe_cubit/edit_recipe_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_data_source_interface.dart';
 import 'package:cookain/ingredients/data/repository/ingredients_reposiroty_implementation.dart';
@@ -91,6 +102,41 @@ void setupSL() {
     (param1, _) => EditIngredientCubit(
       useCase: sl.get<EditIngredientUseCase>(),
       initialIngredient: param1
+    )
+  );
+
+  // Recipes
+  sl.registerLazySingleton<RecipeRemoteDataSource>(
+    () => RecipeRemoteDataSource(fsi: sl.get<FirebaseFirestore>(), fai: sl.get<FirebaseAuth>())
+  );
+  sl.registerLazySingleton<RecipeRepositoryInterface>(
+    () => RecipeRepositoryImplementation(dataSource: sl.get<RecipeRemoteDataSource>())
+  );
+
+  sl.registerLazySingleton<AddRecipeUseCase>(
+    () => AddRecipeUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+  sl.registerLazySingleton<EditRecipeUseCase>(
+    () => EditRecipeUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+  sl.registerLazySingleton<MakeRecipeUseCase>(
+    () => MakeRecipeUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+  sl.registerLazySingleton<RemoveRecipeUseCase>(
+    () => RemoveRecipeUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+  sl.registerLazySingleton<RecipesQueryUseCase>(
+    () => RecipesQueryUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+
+  sl.registerFactory<AddRecipeCubit>(
+    () => AddRecipeCubit(useCase: sl.get<AddRecipeUseCase>())
+  );
+
+  sl.registerFactoryParam<EditRecipeCubit, RecipeEntity, dynamic>(
+    (param1, _) => EditRecipeCubit(
+      useCase: sl.get<EditRecipeUseCase>(),
+      initialRecipe: param1
     )
   );
 
