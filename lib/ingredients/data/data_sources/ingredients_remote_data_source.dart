@@ -21,7 +21,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
       function: () async {
         await userDoc
           .set({
-            ingredient.name : ingredient.toJson()
+            ingredient.name : ingredient
           }, SetOptions(merge: true));
       }
     );
@@ -69,7 +69,7 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
       function: () async {
         await userDoc
           .update({
-          '$ingredientName.quantity' : FieldValue.increment(quantityToAdd)
+            '$ingredientName.quantity' : FieldValue.increment(quantityToAdd)
           });
       }
     );
@@ -77,21 +77,21 @@ class IngredientsRemoteDataSource implements IngredientsDataSourceInterface {
 
   @override
   Stream<DocumentSnapshot<Ingredients>> ingredientsStream() {
-    return userDoc
-      .withConverter<Ingredients>(
-        fromFirestore: (snapshot, _) {
-          final data = snapshot.data();
-          return data?.map((key, value) => MapEntry(key, IngredientModel.fromJson(value))) ?? {};
-        },
-        toFirestore: (model, _) {
-          return model.map((key, value) => MapEntry(key, value.toJson()));
-        }
-      ).snapshots();
+    return userDoc.snapshots();
   }
 
-  DocumentReference get userDoc => fsi
+  DocumentReference<Ingredients> get userDoc => fsi
     .collection('ingredients')
-    .doc(fai.currentUser?.uid);
+    .doc(fai.currentUser?.uid)
+    .withConverter<Ingredients>(
+      fromFirestore: (snapshot, _) {
+        final data = snapshot.data();
+        return data?.map((key, value) => MapEntry(key, IngredientModel.fromJson(value))) ?? {};
+      },
+      toFirestore: (model, _) {
+        return model.map((key, value) => MapEntry(key, value.toJson()));
+      }
+    );
 
   Future<Success> _handleError({required Future<void> Function() function}) async {
     try {
