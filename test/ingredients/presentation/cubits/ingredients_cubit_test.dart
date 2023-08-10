@@ -55,5 +55,10 @@ void main() {
       expect(cubit.state, const IngredientsSuccess(ingredients: {}));
     });
 
+    test('remove non existing ingredient', () async {
+      await cubit.removeIngredient('test');
+      expect(cubit.state, const TypeMatcher<IngredientsError>());
+    });
+
   });
 }
