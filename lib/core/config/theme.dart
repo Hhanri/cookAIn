@@ -13,6 +13,9 @@ class MyTheme {
       dense: false,
       visualDensity: VisualDensity.comfortable,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+    ),
+    navigationBarTheme: const NavigationBarThemeData(
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected
     )
   );
 }
