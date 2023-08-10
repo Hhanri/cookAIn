@@ -13,7 +13,7 @@ class AddIngredientCubit extends GenericDialogIngredientCubit {
   @override
   Future<bool> upload() async {
     if (!(formKey.currentState?.validate() ?? true)) return false;
-    emit(GenericModalIngredientLoading(unit: unit));
+    emit(GenericDialogIngredientLoading(unit: unit));
 
     final ingredient = IngredientModel(
       name: nameController.text.toLowerCase(),
@@ -24,11 +24,11 @@ class AddIngredientCubit extends GenericDialogIngredientCubit {
     final res = await useCase.call(ingredient);
     return res.fold(
       (failure) {
-        emit(GenericModalIngredientError(error: failure.message, unit: unit));
+        emit(GenericDialogIngredientError(error: failure.message, unit: unit));
         return false;
       } ,
       (success) {
-        emit(GenericModalIngredientLoaded(unit: unit));
+        emit(GenericDialogIngredientLoaded(unit: unit));
         return true;
       }
     );

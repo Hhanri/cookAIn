@@ -15,13 +15,13 @@ abstract class GenericDialogIngredientCubit extends DialogFormGenericCubit<Gener
 
   GenericDialogIngredientCubit({
     required this.canEditName
-  }) : super(const GenericModalIngredientLoaded(unit: Unit.kg));
+  }) : super(const GenericDialogIngredientLoaded(unit: Unit.kg));
 
   Unit? unit = Unit.kg;
 
   void changeUnit(Unit? unit) {
     this.unit = unit;
-    emit(GenericModalIngredientLoaded(unit: unit));
+    emit(GenericDialogIngredientLoaded(unit: unit));
   }
 
   @override

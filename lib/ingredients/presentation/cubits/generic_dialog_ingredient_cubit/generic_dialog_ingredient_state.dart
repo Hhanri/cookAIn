@@ -7,22 +7,22 @@ abstract class GenericDialogIngredientState extends MyBlocState {
   const GenericDialogIngredientState({required this.unit, required super.isLoading, super.error});
 }
 
-class GenericModalIngredientLoaded extends GenericDialogIngredientState {
-  const GenericModalIngredientLoaded({required super.unit}) : super(isLoading: false);
+class GenericDialogIngredientLoaded extends GenericDialogIngredientState {
+  const GenericDialogIngredientLoaded({required super.unit}) : super(isLoading: false);
 
   @override
   List<Object?> get props => [isLoading, unit];
 }
 
-class GenericModalIngredientError extends GenericDialogIngredientState {
-  const GenericModalIngredientError({required super.error, required super.unit}) : super(isLoading: false);
+class GenericDialogIngredientError extends GenericDialogIngredientState {
+  const GenericDialogIngredientError({required super.error, required super.unit}) : super(isLoading: false);
 
   @override
   List<Object?> get props => [isLoading, error, unit];
 
 }
-class GenericModalIngredientLoading extends GenericDialogIngredientState {
-  const GenericModalIngredientLoading({required super.unit}) : super(isLoading: true);
+class GenericDialogIngredientLoading extends GenericDialogIngredientState {
+  const GenericDialogIngredientLoading({required super.unit}) : super(isLoading: true);
 
   @override
   List<Object?> get props => [isLoading, unit];

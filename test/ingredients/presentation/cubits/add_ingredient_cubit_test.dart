@@ -26,12 +26,12 @@ void main() {
   group('add ingredient cubit test', () {
 
     test('initial state', () {
-      expect(cubit.state, const GenericModalIngredientLoaded(unit: Unit.kg));
+      expect(cubit.state, const GenericDialogIngredientLoaded(unit: Unit.kg));
     });
 
     test('change unit', () {
       cubit.changeUnit(Unit.g);
-      expect(cubit.state, const GenericModalIngredientLoaded(unit: Unit.g));
+      expect(cubit.state, const GenericDialogIngredientLoaded(unit: Unit.g));
     });
 
     test('upload', () async {
@@ -40,8 +40,8 @@ void main() {
       cubit.changeUnit(Unit.kg);
 
       expectLater(cubit.stream, emitsInOrder([
-        const GenericModalIngredientLoading(unit: Unit.kg),
-        const GenericModalIngredientLoaded(unit: Unit.kg)
+        const GenericDialogIngredientLoading(unit: Unit.kg),
+        const GenericDialogIngredientLoaded(unit: Unit.kg)
       ]));
 
       final res = await cubit.upload();
@@ -54,7 +54,7 @@ void main() {
       cubit.changeUnit(Unit.kg);
       final call = cubit.upload();
       expect(() => call, throwsA(const TypeMatcher<FormatException>()));
-      expect(cubit.state, const GenericModalIngredientLoading(unit: Unit.kg));
+      expect(cubit.state, const GenericDialogIngredientLoading(unit: Unit.kg));
     });
 
   });

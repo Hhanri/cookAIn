@@ -31,27 +31,27 @@ void main() {
   group('add ingredient cubit test', () {
 
     test('initial state', () {
-      expect(cubit.state, const GenericModalIngredientLoaded(unit: Unit.kg));
+      expect(cubit.state, const GenericDialogIngredientLoaded(unit: Unit.kg));
     });
 
     test('init', () {
       cubit.init();
       expect(cubit.nameController.text, 'apple');
       expect(cubit.quantityController.text, '20');
-      expect(cubit.state, const GenericModalIngredientLoaded(unit: null));
+      expect(cubit.state, const GenericDialogIngredientLoaded(unit: null));
     });
 
     test('change unit', () {
       cubit.changeUnit(Unit.kg);
-      expect(cubit.state, const GenericModalIngredientLoaded(unit: Unit.kg));
+      expect(cubit.state, const GenericDialogIngredientLoaded(unit: Unit.kg));
     });
 
     test('edit non existing document', () async {
       cubit.quantityController.text = '10';
       
       expectLater(cubit.stream, emitsInOrder([
-        const GenericModalIngredientLoading(unit: Unit.kg),
-        const TypeMatcher<GenericModalIngredientError>()
+        const GenericDialogIngredientLoading(unit: Unit.kg),
+        const TypeMatcher<GenericDialogIngredientError>()
       ]));
       
       final res = await cubit.upload();
@@ -65,8 +65,8 @@ void main() {
       cubit.quantityController.text = '10';
 
       expectLater(cubit.stream, emitsInOrder([
-        const GenericModalIngredientLoading(unit: Unit.kg),
-        const GenericModalIngredientLoaded(unit: Unit.kg)
+        const GenericDialogIngredientLoading(unit: Unit.kg),
+        const GenericDialogIngredientLoaded(unit: Unit.kg)
       ]));
 
       final res = await cubit.upload();
@@ -79,7 +79,7 @@ void main() {
       cubit.changeUnit(Unit.kg);
       final call = cubit.upload();
       expect(() => call, throwsA(const TypeMatcher<FormatException>()));
-      expect(cubit.state, const GenericModalIngredientLoading(unit: Unit.kg));
+      expect(cubit.state, const GenericDialogIngredientLoading(unit: Unit.kg));
     });
 
   });
