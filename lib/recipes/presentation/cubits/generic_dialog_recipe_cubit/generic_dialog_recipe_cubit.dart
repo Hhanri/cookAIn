@@ -28,12 +28,7 @@ abstract class GenericDialogRecipeCubit extends DialogFormGenericCubit<GenericDi
 
   void changeUnit(Unit? unit, int index) {
     units[index] = unit;
-    emit(GenericDialogRecipeLoaded(
-      units: units,
-      length: units.length,
-      nameControllers: nameControllers,
-      quantityControllers: quantityControllers
-    ));
+    emitLoaded();
   }
 
   void addIngredient() {
@@ -53,7 +48,7 @@ abstract class GenericDialogRecipeCubit extends DialogFormGenericCubit<GenericDi
   void emitLoaded() {
     emit(
       GenericDialogRecipeLoaded(
-        units: units,
+        units: [...units],
         length: units.length,
         nameControllers: nameControllers,
         quantityControllers: quantityControllers
