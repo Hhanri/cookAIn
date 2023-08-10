@@ -1,6 +1,7 @@
 import 'package:cookain/core/cubits/my_bloc_listener.dart';
 import 'package:cookain/core/service_locator.dart';
 import 'package:cookain/core/widgets/text_field_widget.dart';
+import 'package:cookain/core/widgets/units_drop_down_menu.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/presentation/cubits/add_ingredient_cubit/add_ingredient_cubit.dart';
 import 'package:cookain/ingredients/presentation/cubits/edit_ingredient_cubit/edit_ingredient_cubit.dart';
@@ -66,20 +67,7 @@ class _IngredientDialogContent<C extends GenericDialogIngredientCubit> extends S
 
   @override
   Widget build(BuildContext context) {
-
     final cubit = context.read<C>();
-    final List<Unit?> units = [
-      ...Unit.values,
-      null
-    ];
-
-    final dropDownItems = units
-      .map<DropdownMenuItem<Unit>>(
-        (e) => DropdownMenuItem<Unit>(
-          value: e,
-          child: Text(e?.name ?? "None")
-        )
-      ).toList();
 
     return MyBlocListener<C, GenericDialogIngredientState>(
       child: Form(
@@ -105,7 +93,7 @@ class _IngredientDialogContent<C extends GenericDialogIngredientCubit> extends S
                     return DropdownButton<Unit>(
                       isDense: true,
                       value: state,
-                      items: dropDownItems,
+                      items: getUnitsDropDownMenuItems(),
                       onChanged: (unit) {
                         cubit.changeUnit(unit);
                       }
