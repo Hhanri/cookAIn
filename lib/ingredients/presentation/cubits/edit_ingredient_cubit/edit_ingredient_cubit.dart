@@ -2,8 +2,6 @@ import 'package:cookain/ingredients/data/models/ingredient_model.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/domain/use_cases/edit_ingredient_use_case.dart';
 import 'package:cookain/ingredients/presentation/cubits/generic_dialog_ingredient_cubit/generic_dialog_ingredient_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class EditIngredientCubit extends GenericDialogIngredientCubit {
   final EditIngredientUseCase useCase;
@@ -21,8 +19,8 @@ class EditIngredientCubit extends GenericDialogIngredientCubit {
   }
 
   @override
-  void upload(BuildContext context) async {
-    if (!formKey.currentState!.validate()) return;
+  Future<bool> upload() async {
+    if (!(formKey.currentState?.validate() ?? true)) return false;
     emit(GenericModalIngredientLoading(unit: unit));
 
     final ingredient = IngredientModel(
@@ -32,11 +30,14 @@ class EditIngredientCubit extends GenericDialogIngredientCubit {
     );
 
     final res = await useCase.call(ingredient);
-    res.fold(
-      (failure) => emit(GenericModalIngredientError(error: failure.message, unit: unit)) ,
+    return res.fold(
+      (failure) {
+        emit(GenericModalIngredientError(error: failure.message, unit: unit));
+        return false;
+      },
       (success) {
         emit(GenericModalIngredientLoaded(unit: unit));
-        GoRouter.of(context).pop();
+        return true;
       }
     );
   }

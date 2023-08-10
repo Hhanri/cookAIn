@@ -9,7 +9,7 @@ abstract class DialogFormGenericCubit<S> extends Cubit<S> {
 
   void init();
 
-  void upload(BuildContext context);
+  Future<bool> upload();
 
   bool get canEditName;
 }

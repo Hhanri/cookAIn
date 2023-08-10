@@ -44,7 +44,12 @@ Future<void> _showGenericIngredientDialog<C extends GenericDialogIngredientCubit
             Builder(
               builder: (context) {
                 return FilledButton(
-                  onPressed: () => context.read<C>().upload(context),
+                  onPressed: () async {
+                    final cubit = context.read<C>();
+                    cubit.upload().then((value) {
+                      if (value) GoRouter.of(context).pop();
+                    });
+                  },
                   child: const Text("Upload")
                 );
               },
