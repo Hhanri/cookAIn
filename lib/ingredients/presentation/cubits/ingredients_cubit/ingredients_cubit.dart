@@ -38,7 +38,7 @@ class IngredientsCubit extends Cubit<IngredientsState> {
     });
   }
 
-  void removeIngredient(String ingredientName) async {
+  Future<void> removeIngredient(String ingredientName) async {
     emit(state.copyWith(ingredients: {...ingredients}..remove(ingredientName)));
     final res = await removeIngredientUseCase.call(ingredientName);
     res.fold(
