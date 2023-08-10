@@ -16,6 +16,8 @@ class EditIngredientCubit extends GenericDialogIngredientCubit {
   void init() {
     nameController.text = initialIngredient.name;
     quantityController.text = initialIngredient.quantity.toString();
+    unit = initialIngredient.unit;
+    emit(GenericModalIngredientLoaded(unit: unit));
   }
 
   @override
