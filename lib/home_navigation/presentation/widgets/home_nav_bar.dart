@@ -1,6 +1,5 @@
 import 'package:cookain/home_navigation/domain/entities/home_nav_bar_item_entity.dart';
 import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

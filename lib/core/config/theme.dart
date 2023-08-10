@@ -12,10 +12,24 @@ class MyTheme {
       tileColor: scheme.secondaryContainer,
       dense: false,
       visualDensity: VisualDensity.comfortable,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+      shape: MyShapes.roundedRectangleBorder
+    ),
+    expansionTileTheme: ExpansionTileThemeData(
+      shape: MyShapes.roundedRectangleBorder
     ),
     navigationBarTheme: const NavigationBarThemeData(
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected
     )
   );
+}
+
+class MyShapes {
+
+  MyShapes._();
+
+  static final circularBorderRadius = BorderRadius.circular(12);
+
+  static final roundedRectangleBorder = RoundedRectangleBorder(borderRadius: circularBorderRadius);
+
+  static const padding = EdgeInsets.all(8);
 }

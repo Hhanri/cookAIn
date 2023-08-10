@@ -1,3 +1,4 @@
+import 'package:cookain/core/config/theme.dart';
 import 'package:cookain/core/utils/string_extensions.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
@@ -13,13 +14,13 @@ class IngredientTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: MyShapes.padding,
       child: Dismissible(
         background: Container(
-          padding: const EdgeInsets.all(8),
+          padding: MyShapes.padding,
           alignment: const Alignment(0.9, 0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: MyShapes.circularBorderRadius,
             color: colorScheme.errorContainer,
           ),
           child: Icon(Icons.delete, color: colorScheme.onErrorContainer,),

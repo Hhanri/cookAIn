@@ -1,7 +1,6 @@
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/core/service_locator.dart';
 import 'package:cookain/home_navigation/domain/entities/home_nav_bar_item_entity.dart';
-import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
 import 'package:cookain/home_navigation/presentation/widgets/home_nav_bar.dart';
 import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
 import 'package:cookain/ingredients/presentation/screens/ingredients_screen.dart';

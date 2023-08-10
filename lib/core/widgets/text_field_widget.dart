@@ -1,3 +1,4 @@
+import 'package:cookain/core/config/theme.dart';
 import 'package:cookain/core/utils/regexp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +18,7 @@ class MyTextField extends TextFormField {
       hintText: params.label,
       errorText: params.error,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: MyShapes.circularBorderRadius,
         borderSide: BorderSide.none,
       )
     ),

@@ -1,3 +1,4 @@
+import 'package:cookain/core/config/theme.dart';
 import 'package:flutter/material.dart';
 
 part 'loading_controller.dart';
@@ -47,11 +48,11 @@ class LoadingScreen {
               ),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: MyShapes.circularBorderRadius,
               ),
               child: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
-                padding: const EdgeInsets.all(12),
+                padding: MyShapes.padding,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
