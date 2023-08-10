@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/auth/presentation/pages/sign_in_page.dart';
-import 'package:cookain/ingredients/presentation/pages/ingredients_page.dart';
+import 'package:cookain/home_navigation/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,7 +34,7 @@ class MyGoRouter {
         path: homeRoute,
         name: homeName,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: IngredientsPage());
+          return const MaterialPage(child: HomePage());
         }
       ),
       GoRoute(
