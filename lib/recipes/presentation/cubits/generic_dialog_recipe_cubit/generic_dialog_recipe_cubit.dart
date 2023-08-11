@@ -40,6 +40,8 @@ abstract class GenericDialogRecipeCubit extends DialogFormGenericCubit<GenericDi
 
   void removeIngredient(int index) {
     units.removeAt(index);
+    nameControllers[index].dispose();
+    quantityControllers[index].dispose();
     nameControllers.removeAt(index);
     quantityControllers.removeAt(index);
     emitLoaded();
