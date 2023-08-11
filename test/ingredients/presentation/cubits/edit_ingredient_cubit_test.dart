@@ -28,7 +28,7 @@ void main() {
 
   final cubit = EditIngredientCubit(useCase: editIngredientUseCase, initialIngredient: initialIngredient);
 
-  group('add ingredient cubit test', () {
+  group('edit ingredient cubit test', () {
 
     test('initial state', () {
       expect(cubit.state, const GenericDialogIngredientLoaded(unit: Unit.kg));
