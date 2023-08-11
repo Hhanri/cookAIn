@@ -7,7 +7,7 @@ class RecipesQueryUseCase {
 
   RecipesQueryUseCase(this.repo);
 
-  CollectionReference<RecipeEntity> call(RecipeEntity recipe) {
+  CollectionReference<RecipeEntity> call() {
     return repo.recipesQuery();
   }
 }
