@@ -110,7 +110,7 @@ void setupSL() {
     () => RecipeRemoteDataSource(fsi: sl.get<FirebaseFirestore>(), fai: sl.get<FirebaseAuth>())
   );
   sl.registerLazySingleton<RecipeRepositoryInterface>(
-    () => RecipeRepositoryImplementation(dataSource: sl.get<RecipeRemoteDataSource>())
+    () => RecipeRepositoryImplementation(sl.get<RecipeRemoteDataSource>())
   );
 
   sl.registerLazySingleton<AddRecipeUseCase>(

@@ -14,7 +14,7 @@ void main() {
   final fai = mockFAI;
 
   final dataSource = RecipeRemoteDataSource(fsi: fsi, fai: fai);
-  final repo = RecipeRepositoryImplementation(dataSource: dataSource);
+  final repo = RecipeRepositoryImplementation(dataSource);
   final addUseCase = AddRecipeUseCase(repo);
   final editUseCase = EditRecipeUseCase(repo);
 

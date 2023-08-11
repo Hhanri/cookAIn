@@ -19,7 +19,7 @@ void main() {
   final recipeDataSource = RecipeRemoteDataSource(fsi: fsi, fai: fai);
   final ingredientsDataSource = IngredientsRemoteDataSource(fsi: fsi, fai: fai);
 
-  final recipeRepo = RecipeRepositoryImplementation(dataSource: recipeDataSource);
+  final recipeRepo = RecipeRepositoryImplementation(recipeDataSource);
   final ingredientsRepo = IngredientsRepositoryImplementation(ingredientsDataSource);
 
   final addRecipeUseCase = AddRecipeUseCase(recipeRepo);

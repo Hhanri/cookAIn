@@ -12,7 +12,7 @@ class RecipeRepositoryImplementation implements RecipeRepositoryInterface<Recipe
 
   final RecipeDataSourceInterface dataSource;
 
-  RecipeRepositoryImplementation({required this.dataSource});
+  RecipeRepositoryImplementation(this.dataSource);
 
   @override
   Future<Either<Failure, Success>> addRecipe(RecipeModel recipe) async {
