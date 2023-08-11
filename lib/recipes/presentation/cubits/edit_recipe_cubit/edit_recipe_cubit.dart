@@ -25,6 +25,7 @@ class EditRecipeCubit extends GenericDialogRecipeCubit {
       nameControllers.add(TextEditingController(text: ingredients.elementAt(i).name));
       quantityControllers.add(TextEditingController(text: ingredients.elementAt(i).quantity.toString()));
     }
+    emitLoaded();
   }
 
   @override
