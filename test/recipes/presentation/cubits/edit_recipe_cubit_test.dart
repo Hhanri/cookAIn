@@ -5,7 +5,6 @@ import 'package:cookain/recipes/data/models/recipe_model.dart';
 import 'package:cookain/recipes/data/repository/recipe_repository_implementation.dart';
 import 'package:cookain/recipes/domain/use_cases/add_recipe_use_case.dart';
 import 'package:cookain/recipes/domain/use_cases/edit_recipe_use_case.dart';
-import 'package:cookain/recipes/presentation/cubits/add_recipe_cubit/add_recipe_cubit.dart';
 import 'package:cookain/recipes/presentation/cubits/edit_recipe_cubit/edit_recipe_cubit.dart';
 import 'package:cookain/recipes/presentation/cubits/generic_dialog_recipe_cubit/generic_dialog_recipe_cubit.dart';
 import 'package:flutter/material.dart';
