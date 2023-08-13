@@ -15,7 +15,11 @@ class MyTheme {
       shape: MyShapes.roundedRectangleBorder
     ),
     expansionTileTheme: ExpansionTileThemeData(
-      shape: MyShapes.roundedRectangleBorder
+      shape: MyShapes.roundedRectangleBorder,
+      collapsedShape: MyShapes.roundedRectangleBorder,
+      childrenPadding: MyShapes.padding,
+      backgroundColor: MyTheme.scheme.secondaryContainer,
+      clipBehavior: Clip.hardEdge
     ),
     navigationBarTheme: const NavigationBarThemeData(
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected
