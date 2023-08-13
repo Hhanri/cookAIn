@@ -4,8 +4,8 @@ import 'package:equatable/equatable.dart';
 abstract class ChatBotMessageEntity extends Equatable {
   final String prompt;
   final String? response;
-  final Timestamp createTime;
-  final PaLMStatus status;
+  final Timestamp? createTime;
+  final PaLMStatusEntity? status;
 
   const ChatBotMessageEntity({
     required this.prompt,
@@ -16,16 +16,18 @@ abstract class ChatBotMessageEntity extends Equatable {
 }
 
 
-abstract class PaLMStatus extends Equatable {
+abstract class PaLMStatusEntity extends Equatable {
   final Timestamp? completionTime;
   final String? error;
   final Timestamp? startTime;
   final Timestamp? update;
 
-  const PaLMStatus({
+  const PaLMStatusEntity({
     required this.completionTime,
     required this.error,
     required this.startTime,
     required this.update
   });
+
+  Map<String, dynamic> toJson();
 }
