@@ -23,7 +23,7 @@ void main() {
 
   final cubit = AddRecipeCubit(useCase: addRecipeUseCase);
 
-  group('add ingredient cubit test', () {
+  group('add recipe cubit test', () {
 
     test('initial state', () {
       expect(

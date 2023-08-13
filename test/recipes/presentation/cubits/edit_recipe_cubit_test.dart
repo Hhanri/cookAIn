@@ -34,7 +34,7 @@ void main() {
 
   final cubit = EditRecipeCubit(useCase: editRecipeUseCase, initialRecipe: initialRecipe);
 
-  group('edit ingredient cubit test', () {
+  group('edit recipe cubit test', () {
 
     test('initial state', () {
       expect(
