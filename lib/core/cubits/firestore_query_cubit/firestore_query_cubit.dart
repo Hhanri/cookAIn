@@ -24,7 +24,6 @@ abstract class FirestoreQueryCubit<T> extends Cubit<FirestoreQueryState<T>> {
 
   void fetchMore() {
     if (_isFetching || !_hasMore) return;
-
     _pageCount++;
     _fetch();
   }
@@ -42,7 +41,7 @@ abstract class FirestoreQueryCubit<T> extends Cubit<FirestoreQueryState<T>> {
       (event) {
         _isFetching = false;
 
-        _hasMore = event.size < expectedDocsCount;
+        _hasMore = event.size >= expectedDocsCount;
 
         docs = _hasMore
           ? event.docs
@@ -58,7 +57,11 @@ abstract class FirestoreQueryCubit<T> extends Cubit<FirestoreQueryState<T>> {
       onError: (error, stackTrace) {
         _isFetching = false;
         _hasMore = false;
-        emit(FirestoreQueryError(error: error));
+        if (error is FirebaseException) {
+          emit(FirestoreQueryError(error: error.message ?? "firebase error"));
+        } else {
+          emit(FirestoreQueryError(error: error));
+        }
       }
     );
   }
