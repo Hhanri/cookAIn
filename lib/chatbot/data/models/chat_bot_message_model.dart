@@ -3,6 +3,7 @@ import 'package:cookain/chatbot/domain/entities/chat_bot_message_entity.dart';
 class ChatBotMessageModel extends ChatBotMessageEntity {
 
   const ChatBotMessageModel({
+    required super.uid,
     required super.prompt,
     required super.response,
     required super.createTime,
@@ -12,6 +13,7 @@ class ChatBotMessageModel extends ChatBotMessageEntity {
   factory ChatBotMessageModel.fromJson(Map<String, dynamic> json) {
     final Map<String, dynamic>? status = json['status'];
     return ChatBotMessageModel(
+      uid: json['uid'],
       prompt: json['prompt'],
       response: json['response'],
       createTime: json['createTime'],
@@ -30,6 +32,7 @@ class ChatBotMessageModel extends ChatBotMessageEntity {
 
   @override
   List<Object?> get props => [
+    uid,
     prompt,
     response,
     createTime,
