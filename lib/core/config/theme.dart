@@ -19,7 +19,8 @@ class MyTheme {
       collapsedShape: MyShapes.roundedRectangleBorder,
       childrenPadding: MyShapes.padding,
       backgroundColor: MyTheme.scheme.secondaryContainer,
-      clipBehavior: Clip.hardEdge
+      collapsedBackgroundColor: MyTheme.scheme.secondaryContainer,
+      clipBehavior: Clip.none,
     ),
     navigationBarTheme: const NavigationBarThemeData(
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected
