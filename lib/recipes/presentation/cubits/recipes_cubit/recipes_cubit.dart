@@ -18,6 +18,8 @@ class RecipesCubit extends FirestoreQueryCubit<RecipeEntity> {
   });
 
   Future<void> removeRecipe(String recipeName) async {
+    final temp = [...docs]..removeWhere((element) => element.data().name == recipeName);
+    emit(FirestoreQueryLoaded(docs: temp));
     final res = await removeRecipeUseCase.call(recipeName);
     res.fold(
       (failure) => emit(RecipesError(error: failure.message ?? "unknown error")),

@@ -13,7 +13,7 @@ class RecipesListViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return QueryListViewBuilder<RecipesCubit, RecipeEntity>(
       emptyBuilder: (context) {
-        return const Text("No item found");
+        return const Center(child: Text("Add your recipes !"));
       },
       itemBuilder: (context, document) {
         return RecipeExpansionTileWidget(
