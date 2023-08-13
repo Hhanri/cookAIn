@@ -31,6 +31,7 @@ import 'package:cookain/recipes/domain/use_cases/recipes_query_use_case.dart';
 import 'package:cookain/recipes/domain/use_cases/remove_recipe_use_case.dart';
 import 'package:cookain/recipes/presentation/cubits/add_recipe_cubit/add_recipe_cubit.dart';
 import 'package:cookain/recipes/presentation/cubits/edit_recipe_cubit/edit_recipe_cubit.dart';
+import 'package:cookain/recipes/presentation/cubits/recipes_cubit/recipes_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_data_source_interface.dart';
 import 'package:cookain/ingredients/data/repository/ingredients_reposiroty_implementation.dart';
@@ -42,8 +43,15 @@ final GetIt sl = GetIt.asNewInstance();
 
 void setupSL() {
 
-  sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
+  sl.registerLazySingleton<FirebaseFirestore>(
+    () => FirebaseFirestore
+      .instance
+      ..settings = const Settings(
+        cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED
+      )
+  );
   sl.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
+  FirebaseFirestore.instance;
   sl.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn());
 
   // Auth
@@ -127,6 +135,14 @@ void setupSL() {
   );
   sl.registerLazySingleton<RecipesQueryUseCase>(
     () => RecipesQueryUseCase(sl.get<RecipeRepositoryInterface>())
+  );
+
+  sl.registerFactory<RecipesCubit>(
+    () => RecipesCubit(
+      removeRecipeUseCase: sl.get<RemoveRecipeUseCase>(),
+      recipesQueryUseCase: sl.get<RecipesQueryUseCase>(),
+      collectionReference: sl.get<RecipesQueryUseCase>().call()
+    )
   );
 
   sl.registerFactory<AddRecipeCubit>(
