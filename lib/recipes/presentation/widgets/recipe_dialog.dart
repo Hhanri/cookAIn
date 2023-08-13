@@ -6,6 +6,7 @@ import 'package:cookain/core/widgets/units_drop_down_menu.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/recipes/domain/entities/recipe_entity.dart';
 import 'package:cookain/recipes/presentation/cubits/add_recipe_cubit/add_recipe_cubit.dart';
+import 'package:cookain/recipes/presentation/cubits/edit_recipe_cubit/edit_recipe_cubit.dart';
 import 'package:cookain/recipes/presentation/cubits/generic_dialog_recipe_cubit/generic_dialog_recipe_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,10 +21,10 @@ Future<void> showAddRecipeDialog(BuildContext context) {
 }
 
 Future<void> showEditRecipeDialog(BuildContext context, {required RecipeEntity initialRecipe}) {
-  return _showGenericIngredientDialog<AddRecipeCubit>(
+  return _showGenericIngredientDialog<EditRecipeCubit>(
     context: context,
     title: 'Edit Recipe',
-    blocProvider: (context) => sl.get<AddRecipeCubit>(param1: initialRecipe)..init()
+    blocProvider: (context) => sl.get<EditRecipeCubit>(param1: initialRecipe)..init()
   );
 }
 
@@ -105,7 +106,8 @@ class _RecipeDialogContent<C extends GenericDialogRecipeCubit> extends Stateless
                           quantityController: state.quantityControllers[index],
                           unit: state.units[index],
                           onUnitChange: (unit) => cubit.changeUnit(unit, index),
-                          deleteItem: () => cubit.removeIngredient(index)
+                          deleteItem: () => cubit.removeIngredient(index),
+                          canEditName: cubit.canEditName
                         );
                       }
                     );
@@ -125,14 +127,18 @@ class _RecipeDialogContent<C extends GenericDialogRecipeCubit> extends Stateless
     required TextEditingController quantityController,
     required Unit? unit,
     required void Function(Unit? unit) onUnitChange,
-    required void Function() deleteItem
+    required void Function() deleteItem,
+    required bool canEditName
   }) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: MyTextField(
-            params: NormalTextFieldParameters(label: 'Name',),
+            params: NormalTextFieldParameters(
+              label: 'Name',
+              readOnly: !canEditName
+            ),
             controller: nameController
           ),
         ),
