@@ -14,6 +14,10 @@ service cloud.firestore {
       match /recipes/{recipes} {
       	allow read, write: if ingredients == request.auth.uid;
       }
+      
+      match /chat/{message} {
+      	allow read, write: if ingredients == request.auth.uid;
+      }
     }
   }
 }''',
