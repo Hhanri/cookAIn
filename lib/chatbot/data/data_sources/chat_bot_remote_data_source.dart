@@ -5,13 +5,13 @@ import 'package:cookain/core/result/failure.dart';
 import 'package:cookain/core/result/success.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class ChatCotRemoteDataSource implements ChatBotDataSourceInterface {
+class ChatBotRemoteDataSource implements ChatBotDataSourceInterface {
 
   final FirebaseFirestore fsi;
   final FirebaseAuth fai;
 
-  ChatCotRemoteDataSource({required this.fsi, required this.fai});
-  
+  ChatBotRemoteDataSource({required this.fsi, required this.fai});
+
   @override
   Future<Success> deleteConversation() {
     return _handleError(
