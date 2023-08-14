@@ -10,7 +10,7 @@ class HomeNavigationCubit extends Cubit<HomeNavigationState> {
 
   void changeView(HomeNavigationState state) {
     emit(state);
-    controller.jumpToPage(state.index);
+    if(controller.hasClients) controller.jumpToPage(state.index);
   }
 
   @override
