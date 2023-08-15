@@ -45,7 +45,7 @@ class ChatBotRemoteDataSource implements ChatBotDataSourceInterface {
 
   @override
   Future<Success> sendMessage(String message) {
-    final model = ChatBotMessageModel(prompt: message, response: null, createTime: null, status: null);
+    final model = ChatBotMessageModel(prompt: message, response: null, createTime: Timestamp.now(), status: null);
     return _handleError(
       function: () async {
         await _collectionRef.add(model);
