@@ -1,6 +1,9 @@
+import 'package:cookain/chatbot/presentation/cubits/chat_bot_cubit/chat_bot_cubit.dart';
 import 'package:cookain/chatbot/presentation/widgets/chat_bot_list_view_widget.dart';
 import 'package:cookain/chatbot/presentation/widgets/chat_bot_text_field.dart';
+import 'package:cookain/core/config/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatBotPage extends StatelessWidget {
   const ChatBotPage({Key? key}) : super(key: key);
@@ -10,6 +13,12 @@ class ChatBotPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("CookAIn Chat Bot"),
+        actions: [
+          IconButton(
+            onPressed: context.read<ChatBotCubit>().deleteConversation,
+            icon: Icon(Icons.delete_forever, color: MyTheme.scheme.error,)
+          )
+        ],
       ),
       body: const ChatBotListViewWidget(),
       bottomNavigationBar: Padding(
