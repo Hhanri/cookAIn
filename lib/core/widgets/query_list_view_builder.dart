@@ -13,12 +13,15 @@ class QueryListViewBuilder<
   final Widget Function(BuildContext context) emptyBuilder;
   final Widget Function(BuildContext context, QueryDocumentSnapshot<T> document) itemBuilder;
 
+  final bool reverse;
+
   const QueryListViewBuilder({
     Key? key,
     this.loadingBuilder,
     this.errorBuilder,
     required this.emptyBuilder,
-    required this.itemBuilder
+    required this.itemBuilder,
+    this.reverse = false
   }) : super(key: key);
 
   @override
@@ -38,6 +41,7 @@ class QueryListViewBuilder<
         }
         else if (state is FirestoreQueryLoaded<T>) {
           return ListView.builder(
+            reverse: reverse,
             itemCount: state.docs.length,
             itemBuilder: (context, index) {
 
