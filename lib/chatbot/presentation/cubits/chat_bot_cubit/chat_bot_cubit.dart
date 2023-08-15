@@ -27,6 +27,7 @@ class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
   Future<void> sendMessage() async {
     final text = controller.text.trim();
     controller.clear();
+    if (text.isEmpty) return;
     final res = await sendMessageUseCase.call(text);
     res.fold(
       (failure) => ChatBotError(error: failure.message ?? "unknown error"),
