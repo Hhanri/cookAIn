@@ -1,5 +1,6 @@
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/core/service_locator.dart';
+import 'package:cookain/core/widgets/material_3_speed_dial.dart';
 import 'package:cookain/home_navigation/domain/entities/home_nav_bar_item_entity.dart';
 import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
 import 'package:cookain/home_navigation/presentation/widgets/home_nav_bar.dart';
@@ -35,17 +36,42 @@ class HomePage extends StatelessWidget {
             RecipesScreen()
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            switch (context.read<HomeNavigationCubit>().state) {
-              case HomeNavigationState.ingredients: showAddIngredientDialog(context); return;
-              case HomeNavigationState.recipes: showAddRecipeDialog(context); return;
-            }
-          },
-          child: const Icon(Icons.add),
+        floatingActionButton: Material3SpeedDial(
+          children: [
+            addButton(context),
+            chatButton(context)
+          ],
         ),
         bottomNavigationBar: const HomeNavBar(),
       )
     );
   }
+
+  MySpeedDialChild addButton(BuildContext context) {
+    return MySpeedDialChild(
+      onTap: () async {
+        switch (context.read<HomeNavigationCubit>().state)  {
+          case HomeNavigationState.ingredients: return showAddIngredientDialog(context);
+          case HomeNavigationState.recipes: return showAddRecipeDialog(context);
+        }
+      },
+      label: () {
+        switch (context.read<HomeNavigationCubit>().state) {
+          case HomeNavigationState.ingredients: return "Add ingredient";
+          case HomeNavigationState.recipes: return "Add recipe";
+        }
+      },
+      child: const Icon(Icons.add)
+    );
+  }
+
+  MySpeedDialChild chatButton(BuildContext context) {
+    return MySpeedDialChild(
+      onTap: () {
+      },
+      label: () => "Chat Bot",
+      child: const Icon(Icons.chat)
+    );
+  }
+
 }
