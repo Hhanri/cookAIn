@@ -6,6 +6,8 @@ import 'package:cookain/chatbot/domain/use_cases/chat_bot_send_message_use_case.
 import 'package:cookain/core/cubits/firestore_query_cubit/firestore_query_cubit.dart';
 import 'package:flutter/cupertino.dart';
 
+part 'chat_bot_state.dart';
+
 class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
   final ChatBotSendMessageUseCase sendMessageUseCase;
   final ChatBotDeleteMessageUseCase deleteMessageUseCase;
@@ -27,17 +29,17 @@ class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
     controller.clear();
     final res = await sendMessageUseCase.call(text);
     res.fold(
-      (failure) => FirestoreQueryError(error: failure.message ?? "unknown error"),
+      (failure) => ChatBotError(error: failure.message ?? "unknown error"),
       (success) => null
     );
   }
 
   Future<void> deleteMessage(String uid) async {
     final temp = [...docs]..removeWhere((element) => element.id == uid);
-    emit(FirestoreQueryLoaded(docs: temp));
+    emit(ChatBotLoaded(docs: temp));
     final res = await deleteMessageUseCase.call(uid);
     res.fold(
-      (failure) => FirestoreQueryError(error: failure.message ?? "unknown error"),
+      (failure) => ChatBotError(error: failure.message ?? "unknown error"),
       (success) => null
     );
   }
@@ -45,7 +47,7 @@ class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
   Future<void> deleteConversation() async {
     final res = await deleteConversationUseCase.call();
     res.fold(
-      (failure) => FirestoreQueryError(error: failure.message ?? "unknown error"),
+      (failure) => ChatBotError(error: failure.message ?? "unknown error"),
       (success) => null
     );
   }
