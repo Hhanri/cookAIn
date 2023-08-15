@@ -6,6 +6,15 @@ import 'package:cookain/auth/domain/use_cases/sign_in_with_google_use_case.dart'
 import 'package:cookain/auth/domain/use_cases/sign_out_use_case.dart';
 import 'package:cookain/auth/domain/use_cases/user_changes_use_case.dart';
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
+import 'package:cookain/chatbot/data/data_sources/chat_bot_data_source_interface.dart';
+import 'package:cookain/chatbot/data/data_sources/chat_bot_remote_data_source.dart';
+import 'package:cookain/chatbot/data/repository/chat_bot_repository_implementation.dart';
+import 'package:cookain/chatbot/domain/repository/chat_bot_repository_interface.dart';
+import 'package:cookain/chatbot/domain/use_cases/chat_bot_delete_conversation_use_case.dart';
+import 'package:cookain/chatbot/domain/use_cases/chat_bot_delete_message_use_case.dart';
+import 'package:cookain/chatbot/domain/use_cases/chat_bot_messages_query_use_case.dart';
+import 'package:cookain/chatbot/domain/use_cases/chat_bot_send_message_use_case.dart';
+import 'package:cookain/chatbot/presentation/cubits/chat_bot_cubit/chat_bot_cubit.dart';
 import 'package:cookain/core/config/router.dart';
 import 'package:cookain/home_navigation/presentation/cubits/home_navigation_cubit/home_navigation_cubit.dart';
 import 'package:cookain/ingredients/data/data_sources/ingredients_remote_data_source.dart';
@@ -159,4 +168,40 @@ void setupSL() {
   // Router
   sl.registerLazySingleton<MyGoRouter>(() => MyGoRouter(authCubit: sl.get<AuthCubit>()));
   sl.registerLazySingleton<HomeNavigationCubit>(() => HomeNavigationCubit());
+
+  // Chat bot
+
+  sl.registerLazySingleton<ChatBotDataSourceInterface>(
+    () => ChatBotRemoteDataSource(
+      fsi: sl.get<FirebaseFirestore>(),
+      fai: sl.get<FirebaseAuth>()
+    )
+  );
+
+  sl.registerLazySingleton<ChatBotRepositoryInterface>(
+    () => ChatBotRepositoryImplementation(sl.get<ChatBotDataSourceInterface>()))
+  ;
+
+  sl.registerLazySingleton<ChatBotSendMessageUseCase>(
+    () => ChatBotSendMessageUseCase(sl.get<ChatBotRepositoryInterface>())
+  );
+  sl.registerLazySingleton<ChatBotDeleteMessageUseCase>(
+    () => ChatBotDeleteMessageUseCase(sl.get<ChatBotRepositoryInterface>())
+  );
+  sl.registerLazySingleton<ChatBotDeleteConversationUseCase>(
+    () => ChatBotDeleteConversationUseCase(sl.get<ChatBotRepositoryInterface>())
+  );
+  sl.registerLazySingleton<ChatBotMessagesQueryUseCase>(
+    () => ChatBotMessagesQueryUseCase(sl.get<ChatBotRepositoryInterface>())
+  );
+
+  sl.registerFactory<ChatBotCubit>(
+    () => ChatBotCubit(
+      sendMessageUseCase: sl.get<ChatBotSendMessageUseCase>(),
+      deleteConversationUseCase: sl.get<ChatBotDeleteConversationUseCase>(),
+      deleteMessageUseCase: sl.get<ChatBotDeleteMessageUseCase>(),
+      messagesQueryUseCase: sl.get<ChatBotMessagesQueryUseCase>(),
+      query: sl.get<ChatBotMessagesQueryUseCase>().call()
+    )
+  );
 }
