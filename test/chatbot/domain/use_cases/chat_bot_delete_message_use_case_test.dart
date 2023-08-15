@@ -14,8 +14,8 @@ void main() {
   final dataSource = ChatBotRemoteDataSource(fsi: fsi, fai: fai);
   final repo = ChatBotRepositoryImplementation(dataSource);
 
-  final addUseCase = ChatBotSendMessageUesCase(repo);
-  final deleteAllUseCase = ChatBotDeleteConversationUesCase(repo);
+  final addUseCase = ChatBotSendMessageUseCase(repo);
+  final deleteAllUseCase = ChatBotDeleteConversationUseCase(repo);
 
   const emptyChat = '''{
   "ingredients": {

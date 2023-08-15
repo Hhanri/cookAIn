@@ -3,11 +3,11 @@ import 'package:cookain/core/result/failure.dart';
 import 'package:cookain/core/result/success.dart';
 import 'package:dartz/dartz.dart';
 
-class ChatBotDeleteConversationUesCase {
+class ChatBotDeleteConversationUseCase {
 
   final ChatBotRepositoryInterface repo;
 
-  ChatBotDeleteConversationUesCase(this.repo);
+  ChatBotDeleteConversationUseCase(this.repo);
 
   Future<Either<Failure, Success>> call() {
     return repo.deleteConversation();

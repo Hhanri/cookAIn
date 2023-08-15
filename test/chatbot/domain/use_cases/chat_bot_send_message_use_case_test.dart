@@ -14,7 +14,7 @@ void main() {
   final dataSource = ChatBotRemoteDataSource(fsi: fsi, fai: fai);
   final repo = ChatBotRepositoryImplementation(dataSource);
 
-  final addUseCase = ChatBotSendMessageUesCase(repo);
+  final addUseCase = ChatBotSendMessageUseCase(repo);
 
   const message = ChatBotMessageModel(
     prompt: 'message',
