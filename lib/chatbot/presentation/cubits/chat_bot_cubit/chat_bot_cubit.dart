@@ -19,7 +19,7 @@ class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
     required this.deleteConversationUseCase,
     required this.deleteMessageUseCase,
     required this.messagesQueryUseCase,
-    required super.collectionReference
+    required super.query
   });
 
   Future<void> sendMessage() async {

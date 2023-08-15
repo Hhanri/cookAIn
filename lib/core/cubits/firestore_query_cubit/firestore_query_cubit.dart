@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'firestore_query_state.dart';
 
 abstract class FirestoreQueryCubit<T> extends Cubit<FirestoreQueryState<T>> {
-  final CollectionReference<T> collectionReference;
+  final Query<T> query;
   final int pageSize;
   FirestoreQueryCubit({
-    required this.collectionReference,
+    required this.query,
     this.pageSize = 5
   }) : super(FirestoreQueryInitial<T>());
 
@@ -35,9 +35,9 @@ abstract class FirestoreQueryCubit<T> extends Cubit<FirestoreQueryState<T>> {
 
     final expectedDocsCount = (_pageCount+1) * pageSize;
 
-    final query = collectionReference.limit(expectedDocsCount);
+    final newQuery = query.limit(expectedDocsCount);
 
-    _querySubscription = query.snapshots().listen(
+    _querySubscription = newQuery.snapshots().listen(
       (event) {
         _isFetching = false;
 

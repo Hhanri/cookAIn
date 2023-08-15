@@ -14,7 +14,7 @@ class RecipesCubit extends FirestoreQueryCubit<RecipeEntity> {
   RecipesCubit({
     required this.removeRecipeUseCase,
     required this.recipesQueryUseCase,
-    required super.collectionReference,
+    required super.query,
   });
 
   Future<void> removeRecipe(String recipeName) async {

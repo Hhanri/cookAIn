@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mock/mock_firebase.dart';
 
 class _MockFirestoreQueryCubit extends FirestoreQueryCubit<_TestType> {
-  _MockFirestoreQueryCubit({required super.collectionReference});
+  _MockFirestoreQueryCubit({required super.query});
 }
 typedef _TestType = Map<String, dynamic>;
 
@@ -18,7 +18,7 @@ void main() async {
     .doc(fai.currentUser?.uid)
     .collection('recipes');
 
-  final cubit = _MockFirestoreQueryCubit(collectionReference: collectionRef);
+  final cubit = _MockFirestoreQueryCubit(query: collectionRef);
 
   final mockAfterAddingDoc = '''{
   "ingredients": {

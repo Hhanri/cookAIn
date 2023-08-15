@@ -38,8 +38,9 @@ class ChatBotRemoteDataSource implements ChatBotDataSourceInterface {
   }
 
   @override
-  CollectionReference<ChatBotMessageModel> messagesQuery() {
-    return _collectionRef;
+  Query<ChatBotMessageModel> messagesQuery() {
+    return _collectionRef
+      .orderBy('createTime', descending: true);
   }
 
   @override

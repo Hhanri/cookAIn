@@ -6,7 +6,7 @@ abstract class ChatBotDataSourceInterface {
 
   Future<Success> sendMessage(String message);
 
-  CollectionReference<ChatBotMessageEntity> messagesQuery();
+  Query<ChatBotMessageEntity> messagesQuery();
 
   Future<Success> deleteMessage(String uid);
 

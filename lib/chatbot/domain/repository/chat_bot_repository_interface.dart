@@ -8,7 +8,7 @@ abstract class ChatBotRepositoryInterface {
 
   Future<Either<Failure, Success>> sendMessage(String message);
 
-  CollectionReference<ChatBotMessageEntity> messagesQuery();
+  Query<ChatBotMessageEntity> messagesQuery();
 
   Future<Either<Failure, Success>> deleteMessage(String uid);
 

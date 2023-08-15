@@ -29,7 +29,7 @@ void main() {
     deleteConversationUseCase: deleteConversationUseCase,
     deleteMessageUseCase: deleteMessageUseCase,
     messagesQueryUseCase: messagesQueryUseCase,
-    collectionReference: messagesQueryUseCase.call()
+    query: messagesQueryUseCase.call()
   );
 
   group('chat bot cubit test', () {

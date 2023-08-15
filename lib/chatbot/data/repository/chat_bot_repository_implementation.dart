@@ -24,7 +24,7 @@ class ChatBotRepositoryImplementation implements ChatBotRepositoryInterface {
   }
 
   @override
-  CollectionReference<ChatBotMessageEntity> messagesQuery() {
+  Query<ChatBotMessageEntity> messagesQuery() {
     return dataSource.messagesQuery();
   }
 

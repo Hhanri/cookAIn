@@ -28,7 +28,7 @@ void main() {
   final cubit = RecipesCubit(
     removeRecipeUseCase: removeRecipeUseCase,
     recipesQueryUseCase: recipesQueryUseCase,
-    collectionReference: recipesQueryUseCase.call()
+    query: recipesQueryUseCase.call()
   );
 
   group('add ingredient cubit test', () {

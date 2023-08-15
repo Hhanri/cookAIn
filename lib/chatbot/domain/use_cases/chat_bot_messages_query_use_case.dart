@@ -8,7 +8,7 @@ class ChatBotMessagesQueryUseCase {
 
   ChatBotMessagesQueryUseCase(this.repo);
 
-  CollectionReference<ChatBotMessageEntity> call() {
+  Query<ChatBotMessageEntity> call() {
     return repo.messagesQuery();
   }
 }
