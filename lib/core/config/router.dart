@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:cookain/auth/presentation/cubits/auth_cubit.dart';
 import 'package:cookain/auth/presentation/pages/sign_in_page.dart';
-import 'package:cookain/home_navigation/presentation/pages/home_page.dart';
+import 'package:cookain/chatbot/presentation/pages/chat_bot_page_wrapper.dart';
+import 'package:cookain/home_navigation/presentation/pages/home_page_wrapper.dart';
+import 'package:cookain/ingredients/presentation/cubits/ingredients_cubit/ingredients_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,8 +36,21 @@ class MyGoRouter {
         path: homeRoute,
         name: homeName,
         pageBuilder: (context, state) {
-          return const MaterialPage(child: HomePage());
-        }
+          return const MaterialPage(child: HomePageWrapper());
+        },
+        routes: [
+          GoRoute(
+            path: chatBotRoute,
+            name: chatBotName,
+            pageBuilder: (context, state) {
+              return MaterialPage(
+                child: ChatBotPageWrapper(
+                  ingredientsCubit: state.extra as IngredientsCubit,
+                )
+              );
+            }
+          )
+        ]
       ),
       GoRoute(
         path: signInRoute,
@@ -65,7 +80,10 @@ class MyGoRouter {
 
   static const homeRoute = "/home";
   static const homeName = "home";
-  
+
+  static const chatBotRoute = "chatBot";
+  static const chatBotName = "chatBot";
+
   static const _needSignedInRoutes = [
     homeRoute,
   ];
