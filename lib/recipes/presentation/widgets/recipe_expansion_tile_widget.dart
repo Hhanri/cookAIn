@@ -1,4 +1,5 @@
 import 'package:cookain/core/utils/string_extensions.dart';
+import 'package:cookain/core/widgets/confirmation_dialog.dart';
 import 'package:cookain/core/widgets/dismissible_widget.dart';
 import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/recipes/domain/entities/recipe_entity.dart';
@@ -19,6 +20,12 @@ class RecipeExpansionTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
+    final children = recipe
+      .ingredients
+      .values
+      .map(ingredientTextWidget);
+
     return DismissibleWidget(
       key: Key(recipe.hashCode.toString()),
       onDismissed: () => context.read<RecipesCubit>().removeRecipe(recipe.name),
@@ -37,12 +44,25 @@ class RecipeExpansionTileWidget extends StatelessWidget {
             )
           ],
         ),
-        children: recipe
-          .ingredients
-          .values
-          .map(ingredientTextWidget)
-          .toList(),
+        children: [
+          ...children,
+          makeRecipeButton(context, recipe)
+        ],
       ),
+    );
+  }
+
+  Widget makeRecipeButton(BuildContext context, RecipeEntity recipe) {
+    return ElevatedButton.icon(
+      onPressed: () {
+        showConfirmationDialog(
+          context: context,
+          description: "Your food supply will be updated",
+          onValidate: () => context.read<RecipesCubit>().makeRecipe(recipe)
+        );
+      },
+      label: const Icon(Icons.soup_kitchen),
+      icon: const Text("Cook it "),
     );
   }
 
