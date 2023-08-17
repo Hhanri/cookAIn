@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:cookain/recipes/data/models/recipe_model.dart';
 import 'package:cookain/recipes/domain/entities/recipe_entity.dart';
 
-RecipeEntity? extractRecipeFromString(String input) {
+RecipeEntity? extractRecipeFromString(String? input) {
   try {
+    if (input == null) return null;
+
     final firstBracket = input.indexOf('{');
     if (firstBracket == -1) return null;
 

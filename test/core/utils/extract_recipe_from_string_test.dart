@@ -32,6 +32,11 @@ void main() {
       final res = extractRecipeFromString(_fourthTest);
       expect(res, null);
     });
+
+    test('null input should return null', () {
+      final res = extractRecipeFromString(null);
+      expect(res, null);
+    });
   });
 }
 const RecipeEntity _expectedRecipe = RecipeModel(
