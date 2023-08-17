@@ -34,7 +34,7 @@ abstract class GenericDialogRecipeCubit extends DialogFormGenericCubit<GenericDi
     if (initialRecipe == null) {
       addIngredient();
       return;
-    };
+    }
     recipeNameController.text = initialRecipe!.name;
     final Iterable<IngredientEntity> ingredients = initialRecipe!.ingredients.values;
     for (int i = 0; i < initialRecipe!.ingredients.length; i++) {

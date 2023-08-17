@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cookain/chatbot/data/data_sources/chat_bot_remote_data_source.dart';
 import 'package:cookain/chatbot/data/models/chat_bot_message_model.dart';
 import 'package:cookain/chatbot/data/repository/chat_bot_repository_implementation.dart';
