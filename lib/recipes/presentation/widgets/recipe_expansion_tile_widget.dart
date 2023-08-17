@@ -21,9 +21,7 @@ class RecipeExpansionTileWidget extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     return DismissibleWidget(
       key: Key(recipe.hashCode.toString()),
-      onDismissed: () { 
-        context.read<RecipesCubit>().removeRecipe(recipe.name);
-      },
+      onDismissed: () => context.read<RecipesCubit>().removeRecipe(recipe.name),
       child: ExpansionTile(
         leading: canMake
           ? Icon(Icons.check_circle_sharp, color: colorScheme.primary,)

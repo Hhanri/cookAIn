@@ -1,4 +1,5 @@
 import 'package:cookain/core/config/theme.dart';
+import 'package:cookain/core/widgets/confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DismissibleWidget extends StatelessWidget {
@@ -29,9 +30,14 @@ class DismissibleWidget extends StatelessWidget {
         ),
         behavior: HitTestBehavior.deferToChild,
         direction: DismissDirection.endToStart,
-        onUpdate: (DismissUpdateDetails details) {
-          if (details.reached && details.progress == 1) onDismissed();
+        confirmDismiss: (_) async {
+          return await showConfirmationDialog(
+            context: context,
+            description: "You are about to delete this item",
+            onValidate: () {}
+          );
         },
+        onDismissed: (_) => onDismissed(),
         child: child
       ),
     );
