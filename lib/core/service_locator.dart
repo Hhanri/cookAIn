@@ -154,7 +154,7 @@ void setupSL() {
     )
   );
 
-  sl.registerFactoryParam<AddRecipeCubit, RecipeEntity, dynamic>(
+  sl.registerFactoryParam<AddRecipeCubit, RecipeEntity?, dynamic>(
     (param1, _) => AddRecipeCubit(
       useCase: sl.get<AddRecipeUseCase>(),
       initialRecipe: param1
