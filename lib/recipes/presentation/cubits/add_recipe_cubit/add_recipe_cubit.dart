@@ -8,13 +8,9 @@ class AddRecipeCubit extends GenericDialogRecipeCubit {
   final AddRecipeUseCase useCase;
 
   AddRecipeCubit({
-    required this.useCase
+    required this.useCase,
+    super.initialRecipe
   }) : super(canEditName: true);
-
-  @override
-  void init() {
-    addIngredient();
-  }
 
   @override
   Future<bool> upload() async {

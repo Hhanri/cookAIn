@@ -1,32 +1,16 @@
 import 'package:cookain/ingredients/data/models/ingredient_model.dart';
-import 'package:cookain/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:cookain/recipes/data/models/recipe_model.dart';
-import 'package:cookain/recipes/domain/entities/recipe_entity.dart';
 import 'package:cookain/recipes/domain/use_cases/edit_recipe_use_case.dart';
 import 'package:cookain/recipes/presentation/cubits/generic_dialog_recipe_cubit/generic_dialog_recipe_cubit.dart';
-import 'package:flutter/cupertino.dart';
 
 class EditRecipeCubit extends GenericDialogRecipeCubit {
 
   final EditRecipeUseCase useCase;
-  final RecipeEntity initialRecipe;
 
   EditRecipeCubit({
     required this.useCase,
-    required this.initialRecipe,
+    required super.initialRecipe,
   }) : super(canEditName: false);
-
-  @override
-  void init() {
-    recipeNameController.text = initialRecipe.name;
-    final Iterable<IngredientEntity> ingredients = initialRecipe.ingredients.values;
-    for (int i = 0; i < initialRecipe.ingredients.length; i++) {
-      units.add(ingredients.elementAt(i).unit);
-      nameControllers.add(TextEditingController(text: ingredients.elementAt(i).name));
-      quantityControllers.add(TextEditingController(text: ingredients.elementAt(i).quantity.toString()));
-    }
-    emitLoaded();
-  }
 
   @override
   Future<bool> upload() async {

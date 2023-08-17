@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-Future<void> showAddRecipeDialog(BuildContext context) {
+Future<void> showAddRecipeDialog(BuildContext context, {RecipeEntity? initialRecipe}) {
   return _showGenericIngredientDialog<AddRecipeCubit>(
     context: context,
     title: 'Add Recipe',
-    blocProvider: (context) => sl.get<AddRecipeCubit>()..init()
+    blocProvider: (context) => sl.get<AddRecipeCubit>(param1: initialRecipe)..init()
   );
 }
 
