@@ -37,4 +37,5 @@ class MyShapes {
   static final roundedRectangleBorder = RoundedRectangleBorder(borderRadius: circularBorderRadius);
 
   static const padding = EdgeInsets.all(8);
+  static const smallPadding = EdgeInsets.all(4);
 }
