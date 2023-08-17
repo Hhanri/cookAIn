@@ -42,7 +42,9 @@ void main() {
       final docs = await dataSource.messagesQuery().get();
 
       expect(docs.docs.length, 1);
-      expect(docs.docs.first.data(), message1);
+      expect(docs.docs.first.data().prompt, message1.prompt);
+      expect(docs.docs.first.data().response, message1.response);
+      expect(docs.docs.first.data().status, message1.status);
 
     });
 
@@ -65,8 +67,13 @@ void main() {
       final docs = await dataSource.messagesQuery().get();
 
       expect(docs.docs.length, 2);
-      expect(docs.docs[0].data(), message1);
-      expect(docs.docs[1].data(), message2);
+      expect(docs.docs[1].data().prompt, message1.prompt);
+      expect(docs.docs[1].data().response, message1.response);
+      expect(docs.docs[1].data().status, message1.status);
+
+      expect(docs.docs[0].data().prompt, message2.prompt);
+      expect(docs.docs[0].data().response, message2.response);
+      expect(docs.docs[0].data().status, message2.status);
     });
 
     test('delete all mssages', () async {

@@ -65,14 +65,14 @@ void main() {
       await cubit.sendMessage();
       expect(cubit.state, const TypeMatcher<FirestoreQueryLoaded<ChatBotMessageEntity>>());
       expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs.length, 1);
-      expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs.first.data().prompt, 'message test');
+      expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs[0].data().prompt, 'message test');
       expect(cubit.controller.text, '');
 
       cubit.controller.text = 'message test 2';
       await cubit.sendMessage();
       expect(cubit.state, const TypeMatcher<FirestoreQueryLoaded<ChatBotMessageEntity>>());
       expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs.length, 2);
-      expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs[1].data().prompt, 'message test 2');
+      expect((cubit.state as FirestoreQueryLoaded<ChatBotMessageEntity>).docs[0].data().prompt, 'message test 2');
       expect(cubit.controller.text, '');
     });
 

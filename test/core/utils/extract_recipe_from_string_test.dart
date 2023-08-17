@@ -29,7 +29,7 @@ void main() {
     });
 
     test('text with non valid json should return null', () {
-      final res = extractRecipeFromString(_fourthTest);
+      final res = extractRecipeFromString(_fifthTest);
       expect(res, null);
     });
 
