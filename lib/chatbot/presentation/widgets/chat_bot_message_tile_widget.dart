@@ -50,19 +50,17 @@ abstract class _GenericMessageTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: alignment,
-      child: ConstrainedBox(
+      child: Container(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.7
         ),
-        child: Container(
-          margin: MyShapes.padding,
-          padding: MyShapes.padding,
-          decoration: BoxDecoration(
-            borderRadius: MyShapes.circularBorderRadius,
-            color: backgroundColor
-          ),
-          child: Text(text),
+        margin: MyShapes.padding,
+        padding: MyShapes.padding,
+        decoration: BoxDecoration(
+          borderRadius: MyShapes.circularBorderRadius,
+          color: backgroundColor
         ),
+        child: Text(text),
       ),
     );
   }
