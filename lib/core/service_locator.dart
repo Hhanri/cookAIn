@@ -150,6 +150,7 @@ void setupSL() {
     () => RecipesCubit(
       removeRecipeUseCase: sl.get<RemoveRecipeUseCase>(),
       recipesQueryUseCase: sl.get<RecipesQueryUseCase>(),
+      makeRecipeUseCase: sl.get<MakeRecipeUseCase>(),
       query: sl.get<RecipesQueryUseCase>().call()
     )
   );
