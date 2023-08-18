@@ -60,9 +60,9 @@ String formatStringWithRecipe(String text, RecipeEntity recipe) {
 }
 
 String formatRecipeToString(RecipeEntity recipe) {
-  String output = "${recipe.name.toTitleCase()}:\n";
+  String output = "${recipe.name.toTitleCase()}:\n\n";
   for (final value in recipe.ingredients.values) {
-    output += "${value.name.toTitleCase()}: ${value.quantity}${value.unit?.name ?? ""}";
+    output += "${value.name.toTitleCase()}: ${value.quantity}${value.unit?.name ?? ""}\n";
   }
-  return output;
+  return output.trim();
 }

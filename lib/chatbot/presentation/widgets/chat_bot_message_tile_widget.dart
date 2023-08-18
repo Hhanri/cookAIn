@@ -86,14 +86,65 @@ abstract class _GenericMessageTileWidget extends StatelessWidget {
   }
 }
 
-const String _defaultResponse = '''hey here is a recipe you can make:
+const String _defaultResponse = '''Hey here is a recipe you can make:
+
 {
   "name": "Apple Pie",
   "ingredients": {
     "apple": {
       "name": "apple",
       "quantity": 50,
+      "unit": null
+    },
+    "white sugar": {
+      "name": "white sugar",
+      "quantity": 100,
       "unit": "g"
+    },
+    "brown sugar": {
+      "name": "brown sugar",
+      "quantity": 60,
+      "unit": "g"
+    },
+    "flour": {
+      "name": "flour",
+      "quantity": 15,
+      "unit": "g"
+    },
+    "ground cinnamon": {
+      "name": "ground cinnamon",
+      "quantity": 5,
+      "unit": "g"
+    },
+    "ground nutmeg": {
+      "name": "ground nutmeg",
+      "quantity": 1,
+      "unit": "g"
+    },
+    "salt": {
+      "name": "salt",
+      "quantity": 1,
+      "unit": "g"
+    },
+    "lemon juice": {
+      "name": "lemon juice",
+      "quantity": 15,
+      "unit": "mL"
+    },
+    "butter": {
+      "name": "butter",
+      "quantity": 30,
+      "unit": "g"
+    },
+    "butter": {
+      "name": "butter",
+      "quantity": 23,
+      "unit": "g"
+    },
+    "pie dough": {
+      "name": "pie dough",
+      "quantity": 1,
+      "unit": null
     }
   }
 }''';

@@ -100,7 +100,7 @@ Hope you will enjoy this !
           "apple": IngredientModel(name: "apple", quantity: 50, unit: null)
         }
       );
-      const expected = "Apple Pie:\nApple: 50";
+      const expected = "Apple Pie:\n\nApple: 50";
       expect(formatRecipeToString(recipe), expected);
     });
 
@@ -111,7 +111,7 @@ Hope you will enjoy this !
           "apple": IngredientModel(name: "apple", quantity: 50, unit: Unit.kg)
         }
       );
-      const expected = "Apple Pie:\nApple: 50kg";
+      const expected = "Apple Pie:\n\nApple: 50kg";
       expect(formatRecipeToString(recipe), expected);
     });
 
@@ -120,7 +120,7 @@ Hope you will enjoy this !
         name: "apple Pie",
         ingredients: {}
       );
-      const expected = "Apple Pie:\n";
+      const expected = "Apple Pie:";
       expect(formatRecipeToString(recipe), expected);
     });
   });
@@ -147,7 +147,7 @@ Hope you will enjoy this !
   }
 }''';
 
-      const String expected = "Here is your recipe:\n\nApple Pie:\nApple: 50g";
+      const String expected = "Here is your recipe:\n\nApple Pie:\n\nApple: 50g";
       expect(formatStringWithRecipe(text, recipe), expected);
     });
 
@@ -176,6 +176,7 @@ enjoy your meal !''';
       const String expected = '''Here is your recipe:
 
 Apple Pie:
+
 Apple: 50g
 
 enjoy your meal !''';
@@ -226,6 +227,7 @@ enjoy your meal !''';
       const expectedText = '''Here is your recipe:
 
 Apple Pie:
+
 Apple: 50g
 
 enjoy your meal !''';
