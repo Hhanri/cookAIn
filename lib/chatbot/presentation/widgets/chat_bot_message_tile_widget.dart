@@ -93,7 +93,7 @@ const String _defaultResponse = '''Hey here is a recipe you can make:
   "ingredients": {
     "apple": {
       "name": "apple",
-      "quantity": 50,
+      "quantity": 6,
       "unit": null
     },
     "white sugar": {

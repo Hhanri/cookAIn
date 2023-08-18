@@ -46,7 +46,7 @@ class RecipeExpansionTileWidget extends StatelessWidget {
         ),
         children: [
           ...children,
-          makeRecipeButton(context, recipe)
+          if (canMake) makeRecipeButton(context, recipe)
         ],
       ),
     );
@@ -69,7 +69,7 @@ class RecipeExpansionTileWidget extends StatelessWidget {
   Widget ingredientTextWidget(IngredientEntity ingredient) {
     return Row(
       children: [
-        Text('  • ${ingredient.name}'),
+        Text('  • ${ingredient.name}: '),
         Text(ingredient.quantityText)
       ],
     );
