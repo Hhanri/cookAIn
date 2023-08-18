@@ -82,6 +82,12 @@ void main() {
       expect(cubit.state, const FirestoreQueryEmpty<ChatBotMessageEntity>());
     });
 
+    test('prompt from list', () {
+      final list = ['Apple', 'Pineapple'];
+      cubit.promptFromList(list);
+      expect(cubit.controller.text, "Give me a recipe based on this list of ingredients:\n\nApple\nPineapple\n");
+    });
+
   });
 
 }

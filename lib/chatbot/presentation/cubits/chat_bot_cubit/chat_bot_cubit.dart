@@ -35,6 +35,15 @@ class ChatBotCubit extends FirestoreQueryCubit<ChatBotMessageEntity> {
     );
   }
 
+  Future<void> promptFromList(List<String> ingredients) async {
+    controller.clear();
+    String prompt = "Give me a recipe based on this list of ingredients:\n\n";
+    for (final ingredient in ingredients) {
+      prompt += "$ingredient\n";
+    }
+    controller.text = prompt;
+  }
+
   Future<void> deleteMessage(String uid) async {
     final temp = [...docs]..removeWhere((element) => element.id == uid);
     emit(ChatBotLoaded(docs: temp));
