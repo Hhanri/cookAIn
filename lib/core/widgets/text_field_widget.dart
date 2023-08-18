@@ -10,6 +10,7 @@ class MyTextField extends TextFormField {
   MyTextField({super.key, required this.params, required super.controller}) : super(
     expands: params.expands,
     maxLines: params.maxLines,
+    minLines: params.minLines,
     inputFormatters: params.inputFormatters,
     enabled: params.enabled,
     autofocus: params.autoFocus,
@@ -35,6 +36,7 @@ abstract class MyTextFieldParameters {
 
   final bool expands;
   final int maxLines;
+  final int minLines;
   final List<TextInputFormatter>? inputFormatters;
   final bool enabled;
   final bool autoFocus;
@@ -48,6 +50,7 @@ abstract class MyTextFieldParameters {
     this.error,
     this.expands = false,
     this.maxLines = 1,
+    this.minLines = 1,
     this.inputFormatters,
     this.enabled = true,
     this.autoFocus = false,
@@ -84,7 +87,8 @@ class NormalTextFieldParameters extends MyTextFieldParameters {
     super.enabled,
     super.autoFocus,
     super.readOnly,
-    super.maxLines
+    super.maxLines,
+    super.minLines
   }) : super(
     keyboardType: TextInputType.text,
     validator: (value) {
